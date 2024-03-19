@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "slick-carousel/slick/slick.css"; 
+@import "slick-carousel/slick/slick-theme.css";
+
+body {
+  width: 100vw;
+  overflow-x: hidden !important;
+}
+
+.slick-slider :focus {
+  outline: none !important;
+}
+
+.slick-prev {
+  left: 10px;
+  z-index: 50;
+}
+
+.slick-next {
+  right: 10px;
+  z-index: 50;
+}
+
+
