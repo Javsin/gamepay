@@ -1,7 +1,7 @@
 'use client';
 import Navigation from './navigation';
 import Footer from './footer';
-import { DataLayout } from '@/types/infoLayout';
+import { DataLayout } from '@/types/infoLayoutType';
 import { useAppContext } from '@/context/infoLayout';
 import { useEffect } from 'react';
 type Props = {

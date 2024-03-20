@@ -1,7 +1,7 @@
 'use client'; // Assuming this is a comment, otherwise, 'use client' might need correction
 
 import React, { createContext, useState, useContext } from "react";
-import { DataLayout } from "@/types/infoLayout";
+import { DataLayout } from "@/types/infoLayoutType";
 
 type AppState =  {
     state: DataLayout | null;

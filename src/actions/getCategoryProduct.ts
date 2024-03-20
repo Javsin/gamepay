@@ -1,8 +1,8 @@
 'use server'
-export default async function getInfo() {
-    const res = await fetch(`${process.env.HOST_API}/api/instansi`, { 
+export default async function getCategoryProduct() {
+    const res = await fetch(`${process.env.HOST_API}/api/categories`, { 
         next: { 
-            revalidate: 3000,
+            revalidate: 3600,
         },
         headers: {
             'Content-Type': 'application/json',

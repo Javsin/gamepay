@@ -1,7 +1,8 @@
 import Carousel from '@/components/carousel';
 import Image from 'next/image'
-import getSlider from '@/lib/getSlider';
+import getSlider from '@/action/getSlider';
 import React from 'react';
+import { DataBanner } from '@/types/bannerType';
 export default function BannerPage() {
     const settings = {
         dots: false,
@@ -17,10 +18,10 @@ export default function BannerPage() {
         <div className='pt-16 pt'>
             <Carousel setting={settings}>
                 {
-                    slider.data?.map((item :any, index: number) => {
+                    slider.data?.map((item : DataBanner, index: number) => {
                         return (
                             <div key={index} className='px-1'>
-                                <Image src={item.image} alt={item.title} width="0" height="0" sizes="100vw" className="w-full xl:h-96 rounded xl:rounded-xl" priority />
+                                <Image src={item.image} alt={item.title} width="0" height="0" sizes="100vw" className="w-full xl:h-96 rounded xl:rounded-xl" priority/>
                             </div>
                         );
                     })

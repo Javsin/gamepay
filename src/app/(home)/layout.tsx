@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import React, { Suspense } from "react";
+import React from "react";
 const inter = Inter({ subsets: ["latin"] });
 import MainLayout from "@/components/mainLayout";
-import getInfo from "@/lib/getInfo";
+import getInfo from "@/action/getInfo";
 import { AppWrapper } from "@/context/infoLayout";
 
 export const metadata: Metadata = {
@@ -31,9 +31,7 @@ export default function RootLayout({
             {/* <Suspense fallback={<p className="py-96">Loading...</p>}> */}
               {banner}
             {/* </Suspense> */}
-            {/* <Suspense fallback={<p>Loading...</p>}> */}
               {product} 
-            {/* </Suspense> */}
           </MainLayout>
         </AppWrapper>
       </body>

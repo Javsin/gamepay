@@ -15,7 +15,8 @@
           ["@/components", "./src/components"],
           ["@/lib", "./src/lib"],
           ["@/types", "./src/types"],
-          ["@/context", "./src/context"]
+          ["@/context", "./src/context"],
+          ["@/action", "./src/actions"]
         ]
       }
     }
