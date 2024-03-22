@@ -18,9 +18,11 @@ export const metadata: Metadata = {
 export default function RootLayout({
   banner,
   product,
+  popular,
 }: Readonly<{
   banner: React.ReactNode;
   product: React.ReactNode;
+  popular: React.ReactNode;
 }>) {
   const infoLayout = React.use(getInfo());
   return (
@@ -28,9 +30,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <AppWrapper>
           <MainLayout data = {infoLayout.data}>
-            {/* <Suspense fallback={<p className="py-96">Loading...</p>}> */}
               {banner}
-            {/* </Suspense> */}
+              {popular}
               {product} 
           </MainLayout>
         </AppWrapper>

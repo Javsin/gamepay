@@ -20,7 +20,7 @@ const MainLayout = ({ children, data }: Props) => {
         <>
             <Navigation title="Main Layout" />
                 {children}
-            <Footer />
+            <Footer data={data} />
         </>
     );
 }

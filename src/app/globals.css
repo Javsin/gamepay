@@ -5,8 +5,9 @@
 @import "slick-carousel/slick/slick-theme.css";
 
 body {
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden !important;
+  background: #9AA7FB;
 }
 
 .slick-slider :focus {
@@ -21,6 +22,10 @@ body {
 .slick-next {
   right: 10px;
   z-index: 50;
+}
+
+.polygon-1{
+  clip-path: polygon(6% 0, 100% 0, 100% 77%, 94% 100%, 0 100%, 0 20%);
 }
 
 

@@ -28,10 +28,7 @@ export type ResponseData = {
     first_page_url: string;
     from: number;
     last_page: number;
-    last_page_url: string;
-    links: Link[];
-    next_page_url: string;
-    path: string;
+    next_page_url: boolean;
     per_page: number;
     prev_page_url: null | string;
     to: number;

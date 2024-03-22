@@ -1,6 +1,6 @@
 'use server'
-export default async function getProduct<T> ({ id, page }: { id : T , page : T }) {
-    const res = await fetch(`${process.env.HOST_API}/api/menu?id_category=${id}&page=${page}`, { 
+export default async function getPopularProduct() {
+    const res = await fetch(`${process.env.HOST_API}/api/popular`, { 
         next: { 
             revalidate: 0,
         },
