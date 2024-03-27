@@ -4,11 +4,13 @@ import Footer from './footer';
 import { DataLayout } from '@/types/infoLayoutType';
 import { useAppContext } from '@/context/infoLayout';
 import { useEffect } from 'react';
+import { Datafooter } from '@/types/datafooterType';
 type Props = {
     children: React.ReactNode;
     data: DataLayout;
+    dataFooter: Datafooter;
 };
-const MainLayout = ({ children, data }: Props) => {
+const MainLayout = ({ children, data, dataFooter }: Props) => {
     const context = useAppContext();
     const setState = context?.setState;
     useEffect(() => {
@@ -20,7 +22,7 @@ const MainLayout = ({ children, data }: Props) => {
         <>
             <Navigation title="Main Layout" />
                 {children}
-            <Footer data={data} />
+            <Footer data={data} dataFooter={dataFooter}/>
         </>
     );
 }

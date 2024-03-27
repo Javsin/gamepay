@@ -1,6 +1,6 @@
 'use server'
-export default async function getPopularProduct() {
-    const res = await fetch(`${process.env.HOST_API}/api/popular`, { 
+export default async function getFooter() {
+    const res = await fetch(`${process.env.HOST_API}/api/footer`, { 
         next: { 
             revalidate: 0,
         },
@@ -10,7 +10,6 @@ export default async function getPopularProduct() {
         }
     });
     if (!res.ok) {
-        console.log(res);
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data');
     }

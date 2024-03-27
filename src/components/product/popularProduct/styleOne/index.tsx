@@ -3,7 +3,7 @@
 import { PopularProduct } from "@/types/popularType"
 import { motion } from 'framer-motion';
 import Image from "next/image";
-
+import styles from './styleone.module.css';
 type Props = {
     item: PopularProduct;
 }
@@ -11,9 +11,9 @@ type Props = {
 const styleOne = ({ item } : Props) => {
     return (
         <div className="drop-shadow-xl">
-            <motion.div whileHover={{ scale: 1.02, originX : 0 }} transition={{ type: 'spring', stiffness: 100 }} className='bg-gradient-blue-light px-2 py-3 items-center flex polygon-1 gap-3 cursor-pointer relative'>                                    
-                <Image src='https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsb2ZmaWNlNl8zZF9pbGx1c3RyYXRpb25fb2ZfYV9kaW1seV9saXRfZ2FtZV9yb29tX25lb25fd19kZDliOGJjOS1lZjU5LTRhYTktYmNhMi1iOWUyNDkyZmI0YzRfMS5qcGc.jpg' alt={item.menu_name} width="0" height="0" sizes="100vw" className="w-20 h-20 rounded-tl-xl rounded-br-2xl object-cover "/>
-                <p className='text-white font-semibold' >
+            <motion.div whileHover={{ scale: 1.02, originX : 0 }} transition={{ type: 'spring', stiffness: 100 }} className={`bg-gradient-blue-light px-2 py-2 md:py-3 items-center flex gap-3 cursor-pointer relative ${styles.polygon}`}>                                    
+                <Image src={item.thumbnail} alt={item.menu_name} width="0" height="0" sizes="100vw" className="md:w-20 md:h-20 w-14 h-14 rounded-tl-xl rounded-br-2xl object-cover"/>
+                <p className='text-white font-semibold text-xs md:text-base' >
                     {item.menu_name}
                 </p>
                 <div className="selected-item absolute inset-0 overflow-hidden"></div>

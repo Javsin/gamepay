@@ -10,11 +10,11 @@ export default function Popular() {
     return (
         <div className='pt-5 text-start font-semibold'>
             <div className='2xl:container 2xl:max-w-[80rem] xl:mx-auto mx-2 pt-6 pb-12 xl:max-w-[70rem]'>
-                <div className='text-base text-white pb-6 flex gap-1 items-center'> 
-                    <Image src={fireImage} alt='fire' sizes="100vw" width={0} height={0}  className='w-8 h-8 inline-block' />
+                <div className='xl:text-lg text-base text-white pb-6 flex gap-1 items-center'> 
+                    <Image src={fireImage} alt='fire' sizes="100vw" width={0} height={0} className='w-8 h-8 inline-block' />
                     <span>POPULER</span>
                 </div>
-                <div className='grid grid-cols-3 gap-5'>
+                <div className='grid xl:grid-cols-3 grid-cols-2 gap-2 md:grid-cols-2 md:gap-4 xl:gap-5'>
                     {
                         popular.data?.map((item : PopularProduct, index: number) => {
                             return (

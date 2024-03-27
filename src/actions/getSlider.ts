@@ -2,7 +2,7 @@
 export default async function getSlider() {
     const res = await fetch(`${process.env.HOST_API}/api/slider`, { 
         next: { 
-            revalidate: 3600,
+            revalidate: 0,
         },
         headers: {
             'Content-Type': 'application/json',

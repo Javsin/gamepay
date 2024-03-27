@@ -5,9 +5,9 @@
 @import "slick-carousel/slick/slick-theme.css";
 
 body {
-  width: 100%;
-  overflow-x: hidden !important;
   background: #9AA7FB;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .slick-slider :focus {
@@ -24,8 +24,59 @@ body {
   z-index: 50;
 }
 
-.polygon-1{
-  clip-path: polygon(6% 0, 100% 0, 100% 77%, 94% 100%, 0 100%, 0 20%);
+.slick-prev {
+  background-repeat: no-repeat;
+  background-size: contain; /* or cover, depending on your image */
+  width: 40px; /* Adjust width and height according to your image */
+  height: 40px;
 }
 
+.slick-prev:before {
+  content: '';
+}
 
+.slick-next:before {
+  content: '';
+}
+
+.slick-next {
+  background-repeat: no-repeat;
+  background-size: contain; /* or cover, depending on your image */
+  width: 40px; /* Adjust width and height according to your image */
+  height: 40px;
+}
+
+.slick-prev {
+  background-image: url('/assets/icon_next_kiri.png');
+}
+
+.slick-next {
+  background-image: url('/assets/icon_next_kanan.png');
+}
+
+/* Apply background images when hovered or clicked */
+.slick-prev:hover, .slick-prev:focus, .slick-prev:active {
+  background-image: url('/assets/icon_next_kiri.png');
+  background-repeat: no-repeat;
+
+}
+
+.slick-next:hover, .slick-next:focus, .slick-next:active {
+  background-image: url('/assets/icon_next_kanan.png');
+  background-repeat: no-repeat;
+}
+
+/* media query for mobile */
+@media (max-width: 768px) {
+  .slick-prev {
+    display: none !important;
+  }
+
+  .slick-next {
+    display: none !important;
+  }
+}
+
+.remove-scroll::-webkit-scrollbar {
+  display: none;
+}

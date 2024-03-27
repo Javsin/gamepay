@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useAppContext } from "@/context/productLayout";
 import Image from "next/image";
 import styles from './styleone.module.css';
+import acccentImage from '@/public/assets/image_best_up.png'
 type Props = {
     item: Menu;
     index: number;
@@ -26,6 +27,7 @@ const styleOne = ({ item, index } : Props) => {
         }
         return index * 0.25;
     }
+    
     return (
         <div className="drop-shadow-xl">
             <motion.div key={index} initial="hidden" animate="visible" variants={varians} viewport={{amount:0}} transition={
@@ -34,10 +36,15 @@ const styleOne = ({ item, index } : Props) => {
                     ease : "easeInOut",
                     duration : 0.5
                 }
-            } className={`w-full xl:h-64 h-40 bg-gradient-blue-menu polygon-1 cursor-pointer group relative shadow-lg ${styles.polygon}`}>
-                <Image src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsb2ZmaWNlNl8zZF9pbGx1c3RyYXRpb25fb2ZfYV9kaW1seV9saXRfZ2FtZV9yb29tX25lb25fd19kZDliOGJjOS1lZjU5LTRhYTktYmNhMi1iOWUyNDkyZmI0YzRfMS5qcGc.jpg" alt="" width="0" height="0" sizes="100vw" className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300"/>
-                <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-blue-menu">
-                    <p>{item.menu_name}</p>
+            } className={`w-full xl:h-64 h-40 bg-gradient-blue-menu cursor-pointer group relative shadow-lg ${styles.polygon}`}>
+                <div className="">
+                    <div className="xl:h-44 h-24">
+                        <Image src={item.thumbnail} alt="" width="0" height="0" sizes="100vw" className="w-full h-full md:group-hover:scale-110 md:transition-all md:duration-300"/>
+                    </div>
+                    <div className="bg-gradient-blue-menu text-white z-50 h-full"> 
+                        <Image src={acccentImage} quality={10} alt="accent" width="0" height="0" sizes="100vw" className="w-full h-full"/>
+                        <p className="p-2 text-xs md:text-base">{item.menu_name}</p>
+                    </div>
                 </div>
                 <div className="absolute h-full w-full bg-black/60 flex items-center justify-center -bottom-10 group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <p className="text-white">
