@@ -18,21 +18,21 @@ const loadProduct = () => {
     const setHasNextPage = context?.setHasNextPage;
     const totalLoading = Array.from({ length: 6 }, (_, i) => i);
     const loadMore = () => {
-            if (setCount) setCount(old => old + 1);
-            if (setPage) setPage(old => old + 1);
-            getProduct(
-                {
-                    id : id,
-                    page : page,
-                }
-            ).then((res) => {
-                const response = res.data as ResponseData;
-                if (setHasNextPage) {
-                    setHasNextPage(response.next_page_url);
-                }
-                if (setProduct) {
-                    setProduct([...product, ...response.data]);
-                }
+        if (setCount) setCount(old => old + 1);
+        if (setPage) setPage(old => old + 1);
+        getProduct(
+            {
+                id : id,
+                page : page,
+            }
+        ).then((res) => {
+            const response = res.data as ResponseData;
+            if (setHasNextPage) {
+                setHasNextPage(response.next_page_url);
+            }
+            if (setProduct) {
+                setProduct([...product, ...response.data]);
+            }
         });
     }
     return (

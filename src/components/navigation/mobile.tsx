@@ -48,6 +48,11 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+    const modalToggle = () => {
+        setIsOpen(false);
+        toggle();
+        console.log('toggle');
+    }
     return (
         <>
             {/* Your navigation toggle button */}
@@ -111,10 +116,10 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href='/search' className='font-medium py-2 flex items-center gap-1 link'>
+                                            <span onClick={modalToggle} className='font-medium py-2 flex items-center gap-1 link'>
                                                 <Image src={Search} alt='home' width={0} height={0} sizes='100vw' className='object-cover w-4 h-4' />
-                                                <span className={`border-b-2 ${pathname === '/cek-transaksi' ? ' border-orange-500' : 'border-transparent'}`}>Cek Transaksi</span>
-                                            </Link>
+                                                <span className={`border-b-2 ${pathname === '/cek-transaksi' ? ' border-orange-500' : 'border-transparent'}`}>Search</span>
+                                            </span>
                                         </li>
                                     </ul>
                                 </div>

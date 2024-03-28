@@ -39,7 +39,7 @@ const Modal = ({children,isOpen,closeModal,title,size,showClose = true, backgrou
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className={`${size} transform overflow-hidden rounded-2xl ${background} p-6 text-left align-middle shadow-xl transition-all`}>
+                            <Dialog.Panel className={`${size} transform overflow-hidden ${background} p-6 text-left align-middle shadow-xl transition-all`}>
                             <Dialog.Title
                                 as="h3"
                                 className="text-lg font-normal leading-6 text-gray-900 flex justify-between"

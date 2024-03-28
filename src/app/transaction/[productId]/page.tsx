@@ -1,3 +1,4 @@
+
 const detailProduct = ({params} : {params: {productId: string}}) => {
     return (
         <>
