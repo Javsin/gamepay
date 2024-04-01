@@ -23,7 +23,7 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
 
         // Cleanup function to remove the container when the component unmounts
         return () => {
-            if (portalRoot) {
+            if (portalRoot && portalRoot.parentNode === document.body) {
                 document.body.removeChild(portalRoot);
             }
         };

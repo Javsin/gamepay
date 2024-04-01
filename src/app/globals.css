@@ -80,3 +80,13 @@ body {
 .remove-scroll::-webkit-scrollbar {
   display: none;
 }
+
+.rotate-style {
+  perspective: 25em;
+}
+
+.rotate-style img {
+  position: relative;
+  transform: rotateY(20deg) rotateX(-4deg) !important;
+  transform-origin: left center;
+}

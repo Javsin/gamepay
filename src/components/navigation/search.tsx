@@ -51,7 +51,7 @@ const search = ({ isOpen, toggle }: Props) => {
                     {
                         dataFilter.map((item : PopularProduct, index: number) => {
                             return (
-                                <Link href={`./transaction/${item.id}`} key={index} className='flex text-white h-32 gap-4 my-2 w-full cursor-pointer items-center'>
+                                <Link href={`/transaction/${item.id}`} key={index} className='flex text-white h-32 gap-4 my-2 w-full cursor-pointer items-center'>
                                     <Image src={item.thumbnail} alt='' width={0} height={0} sizes='100vw' className='h-auto rounded-tl-lg rounded-br-lg w-24' />
                                     <p>
                                         {item.menu_name}

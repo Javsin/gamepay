@@ -5,6 +5,7 @@ import { DataLayout } from '@/types/infoLayoutType';
 import { useAppContext } from '@/context/infoLayout';
 import { useEffect } from 'react';
 import { Datafooter } from '@/types/datafooterType';
+
 type Props = {
     children: React.ReactNode;
     data: DataLayout;

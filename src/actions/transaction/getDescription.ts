@@ -1,6 +1,6 @@
 'use server'
-export default async function getTransactionConfig({id} : {id: string}) {
-    const res = await fetch(`${process.env.HOST_API}/api/menuConfig?id=${id}`, { 
+export default async function getDescription({id} : {id: string}) {
+    const res = await fetch(`${process.env.HOST_API}/api/menuDescription?id=${id}`, { 
         next: { 
             revalidate: 0,
         },

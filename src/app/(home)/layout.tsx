@@ -9,8 +9,8 @@ const roboto = Roboto({
   preload: true,
 })
 import MainLayout from "@/components/mainLayout";
-import getInfo from "@/action/getInfo";
 import { AppWrapper } from "@/context/infoLayout";
+import getInfo from "@/action/getInfo";
 import getFooter from "@/actions/getFooter";
 export const metadata: Metadata = {
   title: "Create Next App",

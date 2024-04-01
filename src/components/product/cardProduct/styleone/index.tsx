@@ -6,6 +6,7 @@ import { useAppContext } from "@/context/productLayout";
 import Image from "next/image";
 import styles from './styleone.module.css';
 import acccentImage from '@/public/assets/image_best_up.png'
+import Link from "next/link";
 type Props = {
     item: Menu;
     index: number;
@@ -29,7 +30,7 @@ const styleOne = ({ item, index } : Props) => {
     }
     
     return (
-        <div className="drop-shadow-xl">
+        <Link href={`/transaction/${item.id}`} className="drop-shadow-xl">
             <motion.div key={index} initial="hidden" animate="visible" variants={varians} viewport={{amount:0}} transition={
                 {
                     delay : delayAnimated(index),
@@ -52,7 +53,7 @@ const styleOne = ({ item, index } : Props) => {
                     </p>
                 </div>
             </motion.div>
-        </div>
+        </Link>
     )
 }
 
