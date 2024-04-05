@@ -4,7 +4,7 @@ import MainLayout from "@/components/mainLayout";
 import getInfo from "@/action/getInfo";
 import getFooter from "@/actions/getFooter";
 import { AppWrapper } from "@/context/infoLayout";
-import { ProductWrapper } from "@/context/productLayout";
+import { SetProductWrapper } from "@/context/setOrder";
 import TransactionLayout from "@/components/transactionLayout";
 export const metadata = {
   title: 'Next.js',
@@ -15,10 +15,16 @@ export default function RootLayout({
   children,
   description,
   form,
+  product,
+  quantity,
+  paymentmethod
 }: Readonly<{
   children: React.ReactNode;
   description: React.ReactNode;
   form: React.ReactNode;
+  product: React.ReactNode;
+  quantity: React.ReactNode;
+  paymentmethod: React.ReactNode;
 }>) {
   const infoLayout = React.use(getInfo());
   const dataFooter = React.use(getFooter());
@@ -29,9 +35,9 @@ export default function RootLayout({
         <AppWrapper>
           <MainLayout data = {infoLayout.data} dataFooter = {dataFooter.data}>
               {children}
-              <ProductWrapper>
-                <TransactionLayout description = {description} form ={form} />
-              </ProductWrapper>
+              <SetProductWrapper>
+                <TransactionLayout description = {description} form ={form} product = {product} quantity = {quantity} paymentMethod = {paymentmethod} />
+              </SetProductWrapper>
           </MainLayout>
         </AppWrapper>
       </body>

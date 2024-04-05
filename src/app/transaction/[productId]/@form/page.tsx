@@ -2,6 +2,7 @@ import React from "react";
 import getfromOrder from "@/actions/transaction/getformOrder";
 import { formOrderConfig } from "@/types/formOrderType";
 import TextBox from "@/components/form/textBox";
+import SelectOption from "@/components/form/selectOption";
 
 export default function Formorder({params} : {params: {productId: string}}) {
     const formData = React.use(getfromOrder({id: params.productId}));
@@ -21,7 +22,10 @@ export default function Formorder({params} : {params: {productId: string}}) {
                         return (
                             <div key={index} className="mb-3">
                                 {
-                                    item.type === 'textbox' && ( <TextBox label= {item.text} /> )
+                                    item.type === 'textbox' && ( <TextBox label={item.text} placeholder={item.placeholder} typeInput={item.type_input}  /> )
+                                }   
+                                {
+                                    item.type === 'selectbox' && ( <SelectOption label={item.text} option={item.data} placeholder={item.placeholder} /> )
                                 }
                             </div>
                         );
