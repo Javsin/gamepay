@@ -19,7 +19,7 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                     <div>
                         {description}
                     </div>
-                    <div>
+                    <div className="my-7">
                         {testimoni}
                     </div>
                 </div>

@@ -1,6 +1,8 @@
 'use client'
 
 import { useAppContext } from "@/context/setOrder";
+import IconPromo from "@/public/assets/icon_promo.png"
+import Image from "next/image";
 
 export default function Promo() {
     const context = useAppContext();
@@ -27,7 +29,10 @@ export default function Promo() {
                     </button>
                 </div>
                 <div className="bg-[#556EB1] w-1/4 p-2 rounded-lg border border-[#556EB1] mb-4 flex justify-center items-center">
-                    <p className="text-sm text-white">Promo yang tersedia</p>
+                    <div className="flex justify-center items-center gap-x-2">
+                        <Image src={IconPromo} alt="icon_promo" className="w-5" />
+                        <p className="text-sm text-white">Promo yang tersedia</p>
+                    </div>
                 </div>
             </div>
         </div>
