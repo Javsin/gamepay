@@ -1,3 +1,5 @@
+import React from "react";
+
 type TransactionLayoutProps = {
     description : React.ReactNode;
     testimoni? : React.ReactNode;
@@ -5,8 +7,11 @@ type TransactionLayoutProps = {
     product : React.ReactNode;
     quantity : React.ReactNode;
     paymentMethod? : React.ReactNode;
+    promo? : React.ReactNode;
+    contact? : React.ReactNode;
+    buttonSubmit? : React.ReactNode;
 }
-const transactionLayout = ({description,testimoni,form,product,quantity,paymentMethod } : TransactionLayoutProps) => {
+const transactionLayout = ({description,testimoni,form,product,quantity,paymentMethod,promo,contact, buttonSubmit } : TransactionLayoutProps) => {
     return (
         <div className="2xl:container 2xl:max-w-[80rem] xl:mx-auto mx-2 xl:pt-6 py-2.5 xl:pb-12 xl:max-w-[70rem]">
             <div className="grid grid-cols-3 gap-8">
@@ -30,6 +35,15 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                     </div>
                     <div className="my-7">
                         {paymentMethod}
+                    </div>
+                    <div className="my-7">
+                        {promo}
+                    </div>
+                    <div className="my-7">
+                        {contact}
+                    </div>
+                    <div className="my-7">
+                        {buttonSubmit}
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 'use client'; // Assuming this is a comment, otherwise, 'use client' might need correction
 
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useRef } from "react";
 import { Menu } from "@/types/productType";
 
 type AppState =  {

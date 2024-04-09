@@ -3,8 +3,10 @@ import getDetailProduct from "@/actions/transaction/getDetailProduct";
 import { DetailProduct } from "@/types/detailProductType";
 import CardDetailProduct from "@/components/product/detailProduct/styleOne";
 import Image from "next/image";
+
 export default function Formorder({params} : {params: {productId: string}}) {
     const products = React.use(getDetailProduct({id: params.productId}));
+
     return (
         <div className="bg bg-dark-blue-2 rounded-xl">
             <div className="flex gap-2 text-white items-center border-b border-[#374585]">

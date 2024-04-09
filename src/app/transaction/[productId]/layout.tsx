@@ -17,7 +17,11 @@ export default function RootLayout({
   form,
   product,
   quantity,
-  paymentmethod
+  paymentmethod,
+  promo,
+  contact,
+  buttonSubmit,
+  testimoni
 }: Readonly<{
   children: React.ReactNode;
   description: React.ReactNode;
@@ -25,6 +29,10 @@ export default function RootLayout({
   product: React.ReactNode;
   quantity: React.ReactNode;
   paymentmethod: React.ReactNode;
+  promo: React.ReactNode;
+  contact: React.ReactNode;
+  buttonSubmit: React.ReactNode;
+  testimoni: React.ReactNode;
 }>) {
   const infoLayout = React.use(getInfo());
   const dataFooter = React.use(getFooter());
@@ -36,7 +44,7 @@ export default function RootLayout({
           <MainLayout data = {infoLayout.data} dataFooter = {dataFooter.data}>
               {children}
               <SetProductWrapper>
-                <TransactionLayout description = {description} form ={form} product = {product} quantity = {quantity} paymentMethod = {paymentmethod} />
+                <TransactionLayout description = {description} form ={form} product = {product} quantity = {quantity} paymentMethod = {paymentmethod} promo={promo} contact={contact} buttonSubmit={buttonSubmit} testimoni={testimoni}/>
               </SetProductWrapper>
           </MainLayout>
         </AppWrapper>
