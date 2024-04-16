@@ -17,10 +17,10 @@ const Footer = ({ data, dataFooter }: Props) => {
                     <div className="flex justify-center">
                         <Image src={Logo} alt='logo' sizes="100vw" width={0} height={0} className='h-auto w-28' />
                     </div>
-                    <p className="text-center py-2">
+                    <p className="text-center py-2 mx-2 md:mx-0">
                         {dataFooter.description}
                     </p>
-                    <div className="md:mx-28 md:flex md:justify-around grid grid-cols-2 md:gap-y-0 gap-y-3">
+                    <div className="mx-2 md:mx-28 md:flex md:justify-around grid grid-cols-2 md:gap-y-0 gap-y-3 mt-10 md:mt-0">
                         <div>
                             <div className="py-1 md:border-b-2 md:border-orange-500">
                                 <span className="font-semibold">Sosmed</span>

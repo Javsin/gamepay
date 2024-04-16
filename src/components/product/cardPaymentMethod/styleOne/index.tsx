@@ -5,7 +5,6 @@ import CardPaymentSingle from "./cardPaymentSingle"
 import { useAppContext } from "@/context/setOrder";
 import { Payment, PaymentData } from "@/types/paymentMethod";
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 interface CardPaymentMethodProps {
     paymentMethod: PaymentData;

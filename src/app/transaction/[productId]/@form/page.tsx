@@ -7,7 +7,7 @@ import SelectOption from "@/components/form/selectOption";
 export default function Formorder({params} : {params: {productId: string}}) {
     const formData = React.use(getfromOrder({id: params.productId}));
     return (
-        <div className="bg bg-dark-blue-2 rounded-xl">
+        <div className="bg bg-dark-blue-2 rounded-xl my-7 md:my-0">
             <div className="flex gap-2 text-white items-center border-b border-[#374585]">
                 <div className="bg-orange bg-orange-500 rounded-tl-xl py-2 px-4">
                     1
@@ -16,7 +16,7 @@ export default function Formorder({params} : {params: {productId: string}}) {
                     Masukan data akun kamu
                 </div>
             </div>
-            <div className="px-4 py-3 grid grid-cols-2 gap-4">
+            <div className="px-4 py-3 grid grid-cols-1 md:grid-cols-2 gap-4">
                 {
                     formData.data.config.map((item : formOrderConfig, index : number) => {
                         return (

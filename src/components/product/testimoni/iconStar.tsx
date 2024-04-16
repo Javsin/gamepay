@@ -6,7 +6,7 @@ interface iconStarProps {
     color: string;
 }
 
-const IconBintang: React.FC<iconStarProps> = ({count, width, color}) => {
+const IconStar: React.FC<iconStarProps> = ({count, width, color}) => {
     return (
         <div className="flex">
             {
@@ -35,4 +35,4 @@ const IconBintang: React.FC<iconStarProps> = ({count, width, color}) => {
     );
 }
 
-export default IconBintang
+export default IconStar

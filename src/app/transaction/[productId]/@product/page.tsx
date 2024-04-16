@@ -26,7 +26,7 @@ export default function Formorder({params} : {params: {productId: string}}) {
                                     <Image src={products.data[key].icon_kategori} alt={products.data[key].kategori} width={0} height={0} sizes="100vw" className="w-6 h-auto" />
                                     {products.data[key].kategori}
                                 </div>
-                                <div className="grid grid-cols-3 gap-4 text-sm">
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                                     {
                                         products.data[key].data.map((item : DetailProduct, index : number) => {
                                             return (
