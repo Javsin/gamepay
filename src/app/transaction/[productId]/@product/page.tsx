@@ -3,8 +3,10 @@ import getDetailProduct from "@/actions/transaction/getDetailProduct";
 import { DetailProduct } from "@/types/detailProductType";
 import CardDetailProduct from "@/components/product/detailProduct/styleOne";
 import Image from "next/image";
+
 export default function Formorder({params} : {params: {productId: string}}) {
     const products = React.use(getDetailProduct({id: params.productId}));
+
     return (
         <div className="bg bg-dark-blue-2 rounded-xl">
             <div className="flex gap-2 text-white items-center border-b border-[#374585]">
@@ -24,7 +26,7 @@ export default function Formorder({params} : {params: {productId: string}}) {
                                     <Image src={products.data[key].icon_kategori} alt={products.data[key].kategori} width={0} height={0} sizes="100vw" className="w-6 h-auto" />
                                     {products.data[key].kategori}
                                 </div>
-                                <div className="grid grid-cols-3 gap-4 text-sm">
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                                     {
                                         products.data[key].data.map((item : DetailProduct, index : number) => {
                                             return (

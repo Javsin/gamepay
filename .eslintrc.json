@@ -17,7 +17,8 @@
           ["@/types", "./src/types"],
           ["@/context", "./src/context"],
           ["@/action", "./src/actions"],
-          ["@/public", "./public"]
+          ["@/public", "./public"],
+          ["@/helpers", "./helpers"]
         ]
       }
     }

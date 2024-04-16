@@ -1,4 +1,5 @@
 'use client'
+import { useAppContext } from "@/context/setOrder";
 import { platform } from 'os';
 import Select from 'react-select';
 type Props = {
@@ -7,6 +8,9 @@ type Props = {
     placeholder: string,
 }
 const selectOption = ({option, label, placeholder} :Props) => {
+    const context = useAppContext();
+    const setValue = context?.setServer ?? (() => {});
+
     const options = option.map((item : string) => {
         return {
             value: item,
@@ -51,10 +55,16 @@ const selectOption = ({option, label, placeholder} :Props) => {
             }
         })
     };
+
+    const handleChange = (selectedOption : any) => {
+        setValue(selectedOption.value)
+    }
+
+
     return (
         <>
             <label className="block text-sm text-white mb-2">{label}</label>
-            <Select options={options} placeholder={placeholder} styles={customStyles}/>
+            <Select options={options} placeholder={placeholder} styles={customStyles} onChange={handleChange}/>
         </>
     );
 }
