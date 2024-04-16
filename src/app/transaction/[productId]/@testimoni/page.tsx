@@ -52,7 +52,7 @@ export default function Testimoni() {
             </div>
             <div className="px-4 py-5">
                 <div className="flex flex-col justify-center items-center text-center">
-                    <div className="flex gap-x-2">
+                    <div className="flex gap-x-2 items-center justify-center">
                         <IconStar color="#ffc107" count={1} width={25}/>  
                         <div>
                             <p className="text-4xl text-white font-medium">4.9<span className="text-base"> / 5.0</span>
@@ -60,8 +60,8 @@ export default function Testimoni() {
                         </div>
                     </div>
                     <div className="my-3">
-                        <p className="text-xs text-white py-1">98% pembeli merasa puas</p>
-                        <p className="text-xs text-white">1031 Ulasan</p>   
+                        <p className="text-sm text-white py-1">98% pembeli merasa puas</p>
+                        <p className="text-sm text-white">1031 Ulasan</p>   
                     </div>                    
                 </div>
                 <div className="my-2">

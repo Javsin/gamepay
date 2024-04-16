@@ -68,7 +68,7 @@ const CardPaymentGroup: React.FC<CardGroupProps> = ({method, payments, handleIte
                                                 ? 'bg-white border border-orange-600' 
                                                 : 'bg-gray-300 border border-[#556EB1] hover:bg-white hover:border-orange-600 hover:shadow-lg'
                                                 } 
-                                                text-dark-blue rounded-lg p-3 font-semibold`} 
+                                                text-dark-blue rounded-lg p-3 font-semibold cursor-pointer`} 
                                                 onClick={() => handleItemClick(item.merchant_name) } 
                                                 >
                                                 <h1>{item.merchant_name}</h1>

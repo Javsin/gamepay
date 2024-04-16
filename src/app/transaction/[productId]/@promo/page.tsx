@@ -28,10 +28,10 @@ export default function Promo() {
                         Gunakan
                     </button>
                 </div>
-                <div className="bg-[#556EB1] w-3/4 md:w-1/4 p-2 rounded-lg border border-[#556EB1] mb-4 flex justify-center items-center">
+                <div className="bg-[#556EB1] text-white w-3/4 md:w-1/4 p-2 rounded-lg border border-[#556EB1] mb-4 flex justify-center items-center cursor-pointer hover:border-orange-600 hover:bg-white hover:text-black">
                     <div className="flex justify-center items-center gap-x-2">
                         <Image src={IconPromo} alt="icon_promo" className="w-5" />
-                        <p className="text-sm text-white">Promo yang tersedia</p>
+                        <p className="text-sm">Promo yang tersedia</p>
                     </div>
                 </div>
             </div>

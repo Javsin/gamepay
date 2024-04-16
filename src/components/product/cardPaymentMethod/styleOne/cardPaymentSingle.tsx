@@ -24,12 +24,12 @@ const CardPaymentSingle: React.FC<CardSingleProps> = ({method, payments, handleI
                 payments.map((item: Payment, index: number) => (
                     <div key={index}
                         className = {`${!valueProduct || !valueId || !valueServer 
-                            ? 'bg-gray-400 hover:border hover:border-orange-600' 
+                            ? 'bg-gray-400 border border-gray-400 hover:border-orange-600' 
                             : valuePayment === item.merchant_name 
                             ? 'bg-white border border-orange-600' 
                             : 'bg-gray-300 border border-[#556EB1] hover:bg-white hover:border-orange-600 hover:shadow-lg'
                             } 
-                            px-3 py-4 mb-4 rounded-lg col-span-1 text-dark-blue`} 
+                            px-3 py-4 mb-4 rounded-lg col-span-1 text-dark-blue cursor-pointer`} 
                             onClick={() => handleItemClick(item.merchant_name)} >
                     <div className="p-2 flex justify-between">
                         <div>
