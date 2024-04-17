@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
-import { useAppContext } from "@/context/setOrder";
+import { useState } from "react";
 import Select from 'react-select';
 type Props = {
     option: string[],
@@ -9,8 +9,7 @@ type Props = {
     name : string
 }
 const selectOption = ({option, label, placeholder, name} :Props) => {
-    const context = useAppContext();
-    const setValue = context?.setServer ?? (() => {});
+    const [ valueServer, setValueServer] = useState<string>("")
     const options = option.map((item : string) => {
         return {
             value: item,
@@ -57,7 +56,7 @@ const selectOption = ({option, label, placeholder, name} :Props) => {
     };
 
     const handleChange = (selectedOption : any) => {
-        setValue(selectedOption.value)
+        setValueServer(selectedOption.value)
     }
 
 

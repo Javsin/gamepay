@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client';
 import React from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import { useAppContext } from "@/context/setOrder";
 type TransactionLayoutProps = {
     description : React.ReactNode;
@@ -20,64 +21,93 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
     const paymentMethodValue = context?.payment;
     const promoValue = context?.promo;
     const contactValue = context?.contact;
+    const elementAccountRef = context?.elementAccountRef;
     const order = (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formElements = e.currentTarget.elements;
+        let hasEmptyFields = false;
         const formData: { [key: string]: string|number|undefined } = {}; // Explicitly define the type of formData
         for (let i = 0; i < formElements.length; i++) {
             const element = formElements[i] as HTMLInputElement;
             if (element.name) {
                 formData[element.name] = element.value;
+                if(!element.value) {
+                    hasEmptyFields = true
+                }
             }
         }
+
         formData['quantity'] = quantityValue;
         formData['product'] = productValue;
         formData['payment'] = paymentMethodValue;
         formData['promo'] = promoValue;
         formData['contact'] = contactValue;
+
+
+        if (hasEmptyFields || !quantityValue || !productValue || !paymentMethodValue || !contactValue) {
+            if (elementAccountRef?.current) {
+                elementAccountRef?.current.scrollIntoView({ behavior: 'smooth', block: 'start' } as ScrollIntoViewOptions);
+                toast.error("Harap masukkan semua informasi akun yang diperlukan.")
+            }
+        }
+
         console.log(formData)
     }
     return (
-        <div className="2xl:container 2xl:max-w-[80rem] xl:mx-auto mx-2 xl:pt-6 py-2.5 xl:pb-12 xl:max-w-[70rem]">
-            <div className="grid grid-cols-1 md:grid-cols-3 md:gap-8">
-                <div className="col-span-1">
-                    <div>
-                        {description}
-                    </div>
-                    <div className="my-7 hidden md:block">
-                        {testimoni}
-                    </div>
-                </div>
-                <div className="col-span-2">
-                    <form onSubmit={order}>
+        <>        
+            <div className="2xl:container 2xl:max-w-[80rem] xl:mx-auto mx-2 xl:pt-6 py-2.5 xl:pb-12 xl:max-w-[70rem]">
+                <div className="grid grid-cols-1 md:grid-cols-3 md:gap-8">
+                    <div className="col-span-1">
                         <div>
-                            {form}
+                            {description}
                         </div>
-                        <div className="my-7">
-                            {product}
+                        <div className="my-7 hidden md:block">
+                            {testimoni}
                         </div>
-                        <div>
-                            {quantity}
+                    </div>
+                    <div className="col-span-2">
+                        <form onSubmit={order}>
+                            <div>
+                                {form}
+                            </div>
+                            <div className="my-7">
+                                {product}
+                            </div>
+                            <div>
+                                {quantity}
+                            </div>
+                            <div className="my-7">
+                                {paymentMethod}
+                            </div>
+                            <div className="my-7">
+                                {promo}
+                            </div>
+                            <div className="my-7">
+                                {contact}
+                            </div>
+                            <div className="my-7">
+                                {buttonSubmit}
+                            </div>
+                        </form>
+                        <div className="my-16 block md:hidden">
+                            {testimoni}
                         </div>
-                        <div className="my-7">
-                            {paymentMethod}
-                        </div>
-                        <div className="my-7">
-                            {promo}
-                        </div>
-                        <div className="my-7">
-                            {contact}
-                        </div>
-                        <div className="my-7">
-                            {buttonSubmit}
-                        </div>
-                    </form>
-                    <div className="my-16 block md:hidden">
-                        {testimoni}
                     </div>
                 </div>
             </div>
-        </div>
+            <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            />
+        </>
     )
 }
 export default transactionLayout;

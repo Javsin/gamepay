@@ -26,7 +26,7 @@ const navDesktop = ({toggle} : {toggle: () => void}) => {
                                         <span>Beranda</span>
                                     </div>
                                 </Link>
-                                <a href='/' className='text-white font-medium block px-1 mx-2 py-5 float-left border-b-2 border-transparent hover:border-orange-500'>
+                                <a href='/invoices' className='text-white font-medium block px-1 mx-2 py-5 float-left border-b-2 border-transparent hover:border-orange-500'>
                                     <div className='flex items-center gap-1'>
                                         <Image src={Transaction} alt='transaction' width={0} height={0} sizes='100vw' className='object-cover w-4 h-4' />
                                         <span>Cek Transaksi</span>

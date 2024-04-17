@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
-import "../globals.css";
-import React from "react";
+import getFooter from "@/actions/getFooter";
+import getInfo from "@/actions/getInfo";
 import MainLayout from "@/components/mainLayout";
 import { AppWrapper } from "@/context/infoLayout";
-import getInfo from "@/action/getInfo";
-import getFooter from "@/actions/getFooter";
+import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
+import React from "react";
+import "../globals.css";
 
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
@@ -22,15 +22,14 @@ export const metadata: Metadata = {
   },
 };
 
+
 export default function RootLayout({
-  banner,
-  product,
-  popular,
-}: Readonly<{
-  banner: React.ReactNode;
-  product: React.ReactNode;
-  popular: React.ReactNode;
-}>) {
+  findInvoice,
+  historyList
+}: {
+  findInvoice: React.ReactNode;
+  historyList: React.ReactNode;
+}) {
   const infoLayout = React.use(getInfo());
   const dataFooter = React.use(getFooter());
   return (
@@ -38,12 +37,11 @@ export default function RootLayout({
       <body className={roboto.className}>
         <AppWrapper>
           <MainLayout data = {infoLayout.data} dataFooter = {dataFooter.data}>
-              {banner}
-              {popular}
-              {product} 
+            {findInvoice}
+            {historyList}
           </MainLayout>
         </AppWrapper>
       </body>
     </html>
-  );
+  )
 }

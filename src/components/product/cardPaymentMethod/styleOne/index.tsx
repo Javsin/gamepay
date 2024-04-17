@@ -13,26 +13,18 @@ interface CardPaymentMethodProps {
 const CardPaymentMethod: React.FC<CardPaymentMethodProps> = ({paymentMethod}) => {
     const context = useAppContext();
     const valueProduct = context?.product;
-    const valuePrice = context?.price;
-    const valueId = context?.id;
-    const valueServer = context?.server;
     const setValuePayment = context?.setPayment ?? (() => {});
     const elementPaymentRef = context?.elementPaymentRef;
     const elementAccountRef = context?.elementAccountRef;
 
 
-    const handleItemClick = (itemMerchantName: string) => {
+    const handleItemClick = (itemMerchantName: number) => {
         scrollDisplayError()
         setValuePayment(itemMerchantName);
     };
 
     const scrollDisplayError = () => {
-        if (!valueId || !valueServer) {
-            if (elementAccountRef?.current) {
-                elementAccountRef?.current.scrollIntoView({ behavior: 'smooth', block: 'start' } as ScrollIntoViewOptions);
-                toast.error("Harap masukkan semua informasi akun yang diperlukan.")
-            }
-        }else if (!valueProduct){
+    if (!valueProduct){
             if (elementAccountRef?.current) {
                 elementAccountRef?.current.scrollIntoView({ behavior: 'smooth', block: 'start' } as ScrollIntoViewOptions);
                 toast.error("Harap pilih nominal terlebih dahulu.")
@@ -56,7 +48,7 @@ const CardPaymentMethod: React.FC<CardPaymentMethodProps> = ({paymentMethod}) =>
                     <div key={index}>
                         {
                             payments.length === 1 && (
-                            <CardPaymentSingle method={method} payments={payments as Payment[]} handleItemClick={handleItemClick}/>
+                            <CardPaymentSingle method={method} payments={payments as Payment[]} handleItemClick={handleItemClick} />
                             )
                         }
                         {
