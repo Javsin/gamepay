@@ -18,14 +18,14 @@ export default function Formorder({params} : {params: {productId: string}}) {
             </div>
             <div className="px-4 py-3 grid grid-cols-1 md:grid-cols-2 gap-4">
                 {
-                    formData.data.config.map((item : formOrderConfig, index : number) => {
+                    formData?.data.config.map((item : formOrderConfig, index : number) => {
                         return (
                             <div key={index} className="mb-3">
                                 {
-                                    item.type === 'textbox' && ( <TextBox label={item.text} placeholder={item.placeholder} typeInput={item.type_input}  /> )
+                                    item.type === 'textbox' && ( <TextBox label={item.text} placeholder={item.placeholder} typeInput={item.type_input} name={item.key}  /> )
                                 }   
                                 {
-                                    item.type === 'selectbox' && ( <SelectOption label={item.text} option={item.data} placeholder={item.placeholder} /> )
+                                    item.type === 'selectbox' && ( <SelectOption label={item.text} option={item.data} placeholder={item.placeholder} name={item.key} /> )
                                 }
                             </div>
                         );

@@ -1,4 +1,5 @@
 export type formOrderConfig = {
+    key : string;
     text: string;
     type: string;
     placeholder: string;

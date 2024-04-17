@@ -56,12 +56,12 @@ const CardPaymentMethod: React.FC<CardPaymentMethodProps> = ({paymentMethod}) =>
                     <div key={index}>
                         {
                             payments.length === 1 && (
-                            <CardPaymentSingle method={method} payments={payments as Payment[]} handleItemClick={handleItemClick} valuePrice={valuePrice} />
+                            <CardPaymentSingle method={method} payments={payments as Payment[]} handleItemClick={handleItemClick}/>
                             )
                         }
                         {
                             payments.length > 1 && (
-                            <CardPaymentGroup method={method} payments={payments as Payment[]} handleItemClick={handleItemClick} valuePrice={valuePrice} scrollDisplayError={scrollDisplayError} />
+                            <CardPaymentGroup method={method} payments={payments as Payment[]} handleItemClick={handleItemClick} scrollDisplayError={scrollDisplayError} />
                             ) 
                         }
                     </div>

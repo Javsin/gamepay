@@ -30,7 +30,7 @@ export function SetProductWrapper({ children }: { children: React.ReactNode }) {
     const [server , setServer] = useState<string>('');
     const [product , setProduct] = useState<string>('');
     const [price , setPrice] = useState<number>(0);
-    const [quantity , setQuantity] = useState<number>(0);
+    const [quantity , setQuantity] = useState<number>(1);
     const [payment , setPayment] = useState<string>('');
     const [promo , setPromo] = useState<string>('');
     const [contact , setContact] = useState<string>('');

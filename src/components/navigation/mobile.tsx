@@ -51,7 +51,6 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
     const modalToggle = () => {
         setIsOpen(false);
         toggle();
-        console.log('toggle');
     }
     return (
         <>
