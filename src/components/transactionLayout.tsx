@@ -14,6 +14,7 @@ type TransactionLayoutProps = {
     contact? : React.ReactNode;
     buttonSubmit? : React.ReactNode;
 }
+
 const transactionLayout = ({description,testimoni,form,product,quantity,paymentMethod,promo,contact, buttonSubmit } : TransactionLayoutProps) => {
     const context = useAppContext();
     const quantityValue = context?.quantity;
@@ -26,17 +27,22 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
         e.preventDefault();
         const formElements = e.currentTarget.elements;
         let hasEmptyFields = false;
-        const formData: { [key: string]: string|number|undefined } = {}; // Explicitly define the type of formData
+        let temp = [];
+        const formData: { [key: string]: string|number|undefined|{key: string, value:string}[] } = {}; // Explicitly define the type of formData
         for (let i = 0; i < formElements.length; i++) {
             const element = formElements[i] as HTMLInputElement;
             if (element.name) {
-                formData[element.name] = element.value;
+                temp.push({
+                    key: element.name,
+                    value: element.value
+                })
                 if(!element.value) {
                     hasEmptyFields = true
                 }
             }
         }
 
+        formData['tujuan'] = temp;
         formData['quantity'] = quantityValue;
         formData['product'] = productValue;
         formData['payment'] = paymentMethodValue;

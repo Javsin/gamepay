@@ -29,7 +29,7 @@ export default function BannerPage() {
     };
     return (
         <div className='relative w-full mt-14 xl:mt-0'>
-            <Image src={ImageHeader} alt='header' sizes="100vw" quality={80} fill className='object-cover' priority />
+            <Image src={ImageHeader} alt='header' sizes="100vw" quality={80} fill className='object-cover w-full' priority />
             <div className={`2xl:container 2xl:max-w-[80rem] xl:mx-auto mx-2 xl:pt-6 py-2.5 xl:pb-12 xl:max-w-[70rem]`}>
                 <Carousel setting={settings}>
                     {

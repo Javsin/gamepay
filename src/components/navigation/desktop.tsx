@@ -49,7 +49,7 @@ const navDesktop = ({toggle} : {toggle: () => void}) => {
                                     </div>
                                 </div>
                                 <a href='/sign-in' className='text-white font-medium block px-1 mx-2 py-5 float-left  border-b-2 border-transparent hover:border-orange-500'>Masuk</a>
-                                <a href='/' className='text-white font-medium block px-3 py-5 float-left'>
+                                <a href='/sign-up' className='text-white font-medium block px-3 py-5 float-left'>
                                     <span className='bg-orange-500 rounded-lg px-4 py-2'>
                                         Daftar
                                     </span>

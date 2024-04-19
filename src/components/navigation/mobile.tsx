@@ -103,9 +103,9 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href='/cektransaksi' className='font-medium py-2 flex items-center gap-1 link'>
+                                            <Link href='/invoices' className='font-medium py-2 flex items-center gap-1 link'>
                                                 <Image src={Transaction} alt='home' width={0} height={0} sizes='100vw' className='object-cover w-4 h-4' />
-                                                <span className={`border-b-2 ${pathname === '/cektransaksi' ? ' border-orange-500' : 'border-transparent'}`}>Cek Transaksi</span>
+                                                <span className={`border-b-2 ${pathname === '/invoices' ? ' border-orange-500' : 'border-transparent'}`}>Cek Transaksi</span>
                                             </Link>
                                         </li>
                                         <li>

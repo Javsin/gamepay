@@ -1,7 +1,8 @@
+import Register from "@/components/register";
 const signUpPage = () => {
     return (
-        <div>
-            <h1>Sign Up</h1>
+        <div className="bg-background-login bg-cover bg-center">
+            <Register />
         </div>
     );
 }
