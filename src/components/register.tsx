@@ -6,6 +6,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import ButtonClose from "./auth/buttonClose";
 import Button from "./auth/button";
+import IconIndonesia from "@/public/assets/icon_indonesia.png"
+import Image from "next/image";
+import ReCAPTCHA from 'react-google-recaptcha';
+
 const signUpPage = () => {
     const router = useRouter();
     const fullName = useRef('');
@@ -14,10 +18,25 @@ const signUpPage = () => {
     const noHP = useRef('');
     const password = useRef('');
     const confirmPassword = useRef('');
+
+    const [captchaValue, setCaptchaValue] = useState("");
     const [isChecked, setIsChecked] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState('+62');
+    console.log(phoneNumber)
+
+    const handleChangeNoHp = (e: any) => {
+        const userInput = e.target.value;
+        if (userInput.startsWith('+62')) {
+            setPhoneNumber(userInput);
+        }
+    };
 
     const handleCheckboxChange = () => {
         setIsChecked(!isChecked);
+    };
+
+    const handleCaptchaChange = (value: string | null) => {
+        value && setCaptchaValue(value);
     };
 
     const clicked = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -69,10 +88,15 @@ const signUpPage = () => {
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-0 md:mb-2">
                     <div className="w-full px-3">
-                    <label className="block tracking-wide text-white text-xs font-bold mb-2" htmlFor="noHp">
-                        Nomor Whatsapp
-                    </label>
-                    <input className="border border-gray-300 rounded-md px-4 py-2 mb-3 w-full text-sm focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" id="noHp" type="text" placeholder="Nomor Whatsapp" onChange={(e) => noHP.current = e.target.value} />
+                        <label className="block tracking-wide text-white text-xs font-bold mb-2" htmlFor="noHp">
+                            Nomor Whatsapp
+                        </label>
+                        <div className="relative mb-2">
+                            <div className="absolute inset-y-1 start-0 flex justify-center items-center ps-2 pointer-events-none">
+                                <Image src={IconIndonesia} className="w-6" alt="indonesia" />
+                            </div>
+                            <input type="text" className="border border-gray-300 rounded-md block w-full ps-10 p-2.5 text-sm focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" id="noHp"  placeholder="Nomor Whatsapp" value={phoneNumber} onChange={handleChangeNoHp} />
+                        </div>
                     </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-0 md:mb-2">
@@ -85,13 +109,20 @@ const signUpPage = () => {
                         <input id="confirmPassword" type="text" placeholder="Konfirmasi kata sandi" className="border border-gray-300 rounded-md px-4 py-2 mb-3 w-full text-sm focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" onChange={(e) => confirmPassword.current = e.target.value} />
                     </div>
                 </div>
-                <div className="flex flex-wrap -mx-3 mb-2 px-3">
+                <div className="flex flex-wrap -mx-3 mb-4 px-3">
                     <label className="w-full flex items-center">
                         <input className="mr-2 leading-tight rounded h-4 w-4 cursor-pointer" type="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
                         <p className="text-xs text-white">
                             Saya setuju dengan <span className="text-sky-300">syarat dan ketentuan</span> dan <span className="text-sky-300">kebijakan pribadi</span>
                         </p>
                     </label>
+                </div>
+                <div className="flex flex-wrap -mx-3 my-2 px-3">
+                    <ReCAPTCHA
+                        sitekey="YOUR_SITE_KEY"
+                        onChange={handleCaptchaChange}
+                        type="image"
+                    />
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-2 px-3">
                     <Button title="Daftar" color="bg-orange-600" />

@@ -1,16 +1,22 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client';
 import { signIn } from "next-auth/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import ButtonClose from "./auth/buttonClose";
 import Button from "./auth/button";
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const signInPage = () => {
     const router = useRouter();
     const user = useRef('');
     const pass = useRef('');
+    const [captchaValue, setCaptchaValue] = useState("");
+    const handleCaptchaChange = (value: string | null) => {
+        value && setCaptchaValue(value);
+    };
+
     const clicked = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const res = await signIn("credentials", {
@@ -22,6 +28,7 @@ const signInPage = () => {
             router.push('/');
         }
     }
+
     return (
         <div className="relative w-full xl:w-1/2 flex flex-col min-h-screen items-start justify-center px-4 sm:px-32">
             <div className="absolute top-2 left-4 md:top-4 2xl:top-10">
@@ -43,6 +50,13 @@ const signInPage = () => {
                         </label>
                         <input className="border border-gray-300 rounded-md px-4 py-2 mb-3 w-full text-sm focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" id="password" type="password" placeholder="Password" onChange={(e) => pass.current = e.target.value} />
                     </div>
+                </div>
+                <div className="flex flex-wrap -mx-3 my-2 px-3">
+                    <ReCAPTCHA
+                        sitekey="YOUR_SITE_KEY"
+                        onChange={handleCaptchaChange}
+                        type="image"
+                    />
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-2 px-3">
                     <Button title="Masuk" color="bg-orange-600" />
