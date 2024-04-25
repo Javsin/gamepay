@@ -15,6 +15,8 @@ type AppState =  {
     setPromo: React.Dispatch<React.SetStateAction<string>>;
     contact: string;
     setContact: React.Dispatch<React.SetStateAction<string>>;
+    isCek: boolean;
+    setIsCek: React.Dispatch<React.SetStateAction<boolean>>;
     elementPaymentRef: React.MutableRefObject<HTMLDivElement | null>
     elementAccountRef: React.MutableRefObject<HTMLDivElement | null>
 }
@@ -28,11 +30,12 @@ export function SetProductWrapper({ children }: { children: React.ReactNode }) {
     const [payment , setPayment] = useState<number>(0);
     const [promo , setPromo] = useState<string>('');
     const [contact , setContact] = useState<string>('');
+    const [isCek , setIsCek] = useState<boolean>(false);
     const elementPaymentRef = useRef<HTMLDivElement | null>(null);
     const elementAccountRef = useRef<HTMLDivElement | null>(null);
 
     return (
-        <AppContext.Provider value = {{ product, setProduct, price, setPrice, quantity, setQuantity, payment, setPayment, promo, setPromo, contact, setContact, elementPaymentRef, elementAccountRef }}>
+        <AppContext.Provider value = {{ product, setProduct, price, setPrice, quantity, setQuantity, payment, setPayment, promo, setPromo, contact, setContact, isCek, setIsCek, elementPaymentRef, elementAccountRef }}>
             {children}
         </AppContext.Provider>
     );

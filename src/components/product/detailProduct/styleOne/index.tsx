@@ -8,12 +8,13 @@ import { useState,useEffect, use } from "react";
 import { formatRupiah } from '@/helpers/formatRupiah'
 import { px } from "framer-motion";
 
-const cardDetailProduct = ({item} : {item: DetailProduct}) => {
+const cardDetailProduct = ({item, isCek} : {item: DetailProduct, isCek : boolean}) => {
     const [className, setClassName] = useState<string>('bg-[#556EB1] text-white');
     const context = useAppContext();
     const valueProduct = context?.product
     const setValueProduct = context?.setProduct ?? (() => {});
     const setValuePrice = context?.setPrice ?? (() => {});
+    const setIsCek = context?.setIsCek ?? (() => {});
     const elementPaymentRef = context?.elementPaymentRef
 
     const handleClickProduct = (item: DetailProduct) => {
@@ -25,6 +26,7 @@ const cardDetailProduct = ({item} : {item: DetailProduct}) => {
     }
 
     useEffect(() => {
+        setIsCek(isCek);
         if(valueProduct === item.code_product){
             setClassName('bg-white text-dark-blue border border-orange-500');
         }else{

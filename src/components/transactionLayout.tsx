@@ -22,13 +22,14 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
     const paymentMethodValue = context?.payment;
     const promoValue = context?.promo;
     const contactValue = context?.contact;
+    const isCekValue = context?.isCek;
     const elementAccountRef = context?.elementAccountRef;
     const order = (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formElements = e.currentTarget.elements;
         let hasEmptyFields = false;
         let temp = [];
-        const formData: { [key: string]: string|number|undefined|{key: string, value:string}[] } = {}; // Explicitly define the type of formData
+        const formData: { [key: string]: string|number|boolean|undefined|{key: string, value:string}[] } = {}; // Explicitly define the type of formData
         for (let i = 0; i < formElements.length; i++) {
             const element = formElements[i] as HTMLInputElement;
             if (element.name) {
@@ -48,6 +49,7 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
         formData['payment'] = paymentMethodValue;
         formData['promo'] = promoValue;
         formData['contact'] = contactValue;
+        formData['cek'] = isCekValue;
 
 
         if (hasEmptyFields || !quantityValue || !productValue || !paymentMethodValue || !contactValue) {
