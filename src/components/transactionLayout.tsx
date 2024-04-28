@@ -3,6 +3,10 @@
 import React from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { useAppContext } from "@/context/setOrder";
+import checkProduct from "@/action/transaction/checkProduct"
+import { Pembelian } from "@/types/buyProduct";
+import { useState } from "react";
+import Modal from "@/components/modal";
 type TransactionLayoutProps = {
     description : React.ReactNode;
     testimoni? : React.ReactNode;
@@ -16,6 +20,11 @@ type TransactionLayoutProps = {
 }
 
 const transactionLayout = ({description,testimoni,form,product,quantity,paymentMethod,promo,contact, buttonSubmit } : TransactionLayoutProps) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [valueCheck, setValueCheck] = useState([]);
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    }
     const context = useAppContext();
     const quantityValue = context?.quantity;
     const productValue = context?.product;
@@ -24,12 +33,12 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
     const contactValue = context?.contact;
     const isCekValue = context?.isCek;
     const elementAccountRef = context?.elementAccountRef;
-    const order = (e : React.FormEvent<HTMLFormElement>) => {
+    const order = async (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formElements = e.currentTarget.elements;
         let hasEmptyFields = false;
         let temp = [];
-        const formData: { [key: string]: string|number|boolean|undefined|{key: string, value:string}[] } = {}; // Explicitly define the type of formData
+        const formData : { [key: string]: string|number|boolean|undefined|{key: string, value:string}[] } = {}; // Explicitly define the type of formData
         for (let i = 0; i < formElements.length; i++) {
             const element = formElements[i] as HTMLInputElement;
             if (element.name) {
@@ -49,17 +58,23 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
         formData['payment'] = paymentMethodValue;
         formData['promo'] = promoValue;
         formData['contact'] = contactValue;
-        formData['cek'] = isCekValue;
 
-
-        if (hasEmptyFields || !quantityValue || !productValue || !paymentMethodValue || !contactValue) {
+        if (hasEmptyFields || !quantityValue || !productValue || !paymentMethodValue ) {
             if (elementAccountRef?.current) {
                 elementAccountRef?.current.scrollIntoView({ behavior: 'smooth', block: 'start' } as ScrollIntoViewOptions);
                 toast.error("Harap masukkan semua informasi akun yang diperlukan.")
             }
+        }else if( !contactValue){
+            toast.error("Harap masukkan kontak anda.")
+        }else{
+            if(isCekValue){
+                const responseCheck = await checkProduct(formData as Pembelian);
+                if(responseCheck.status === 200){
+                    setValueCheck(responseCheck.data);
+                    toggle();
+                }
+            }
         }
-
-        console.log(formData)
     }
     return (
         <>        
@@ -104,17 +119,43 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                 </div>
             </div>
             <ToastContainer
-            position="top-right"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="dark"
+                position="top-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
             />
+            <Modal isOpen={isOpen} closeModal={toggle} title='' size='w-[35rem]' showClose={false} background='bg-[#313E75] rounded-xl text-white'>
+                <div className="border-b border-[#4E66D9] flex items-center gap-3">
+                    <div className="bg-orange-500 py-2">
+                        icon
+                    </div>
+                    <div className="py-2">
+                        ww
+                    </div>
+                </div>
+                <div className="p-6 grid grid-cols-2">
+                    {
+                        valueCheck.map((item : any, index) => {
+                            return (
+                                <div className="col-span-1 gap-2" key={index}>
+                                    <div className="text-sm font-light">
+                                        {item.key}
+                                    </div>
+                                    <div>
+                                        {item.value}
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </Modal>
         </>
     )
 }

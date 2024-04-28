@@ -92,10 +92,13 @@ body {
   transform-origin: left center;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none; /* Remove default appearance */
-  margin: 0; /* Optional: Remove default margin */
+input[type="number"]::-webkit-outer-spin-button, 
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 .scrollInToPayemnt {

@@ -16,7 +16,7 @@ const textBox = ({label, placeholder, typeInput, name} : Props) => {
     return (
         <div ref={elementAccountRef} className="scrollInToAccount">
             <label className="block text-sm text-white mb-2">{label}</label>
-            <input type={typeInput} name={name} placeholder={placeholder} value={valueId} onChange={(e) => setValueId(e.target.value)} className="w-full placeholder-black bg-[#C2D2FF] border-0 text-dark-blue rounded-lg px-3 py-2 focus:outline-none"/>
+            <input type={typeInput} name={name} placeholder={placeholder} value={valueId} onChange={(e) => setValueId(e.target.value)} className="w-full placeholder-black bg-[#C2D2FF] border-0 text-dark-blue rounded-lg px-3 py-2 focus:outline-none" onWheel={(e) => e.currentTarget.blur()} />
         </div>
     );
 }
