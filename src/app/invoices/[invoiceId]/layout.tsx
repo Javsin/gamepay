@@ -5,7 +5,7 @@ import { AppWrapper } from "@/context/infoLayout";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import React from "react";
-import "../globals.css";
+import "../../globals.css";
 
 const roboto = Roboto({
   weight: ['100', '300', '400', '500', '700', '900'],
@@ -22,23 +22,20 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
-  findInvoice,
-  historyList
+  children,
 }: {
-  findInvoice: React.ReactNode;
-  historyList: React.ReactNode;
+  children: React.ReactNode
 }) {
   const infoLayout = React.use(getInfo());
   const dataFooter = React.use(getFooter());
+  
   return (
     <html lang="en">
       <body className={roboto.className}>
         <AppWrapper>
           <MainLayout data = {infoLayout.data} dataFooter = {dataFooter.data}>
-            {findInvoice}
-            {historyList}
+            {children}
           </MainLayout>
         </AppWrapper>
       </body>
