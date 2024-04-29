@@ -42,11 +42,11 @@ const detailInvoice = ({params} : {params: {invoiceId: string}}) => {
                     <div className="bg-yellow-300 py-0.5 px-2 rounded-md text-black font-semibold">{params.invoiceId}</div>
                 </div>
                 <div className="grid grid-cols-12 gap-3 mt-4">
-                    <div className="col-span-8">
+                    <div className="col-span-12 md:col-span-8">
                         <DetailTransaction />
                         <InfoAccount />
                     </div>
-                    <div className="col-span-4">
+                    <div className="col-span-12 md:col-span-4">
                         <button className="py-1 px-5 w-full bg-orange-500 rounded-xl text-center text-white" onClick={handleDownloadInvoice}>Download Invoice</button>
                         <InfoPayment />
                     </div>
