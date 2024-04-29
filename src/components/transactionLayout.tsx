@@ -4,12 +4,14 @@ import React from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import { useAppContext } from "@/context/setOrder";
 import checkProduct from "@/action/transaction/checkProduct"
+import orderProduct from "@/actions/transaction/orderProduct";
 import { Pembelian } from "@/types/buyProduct";
 import { useState } from "react";
 import Modal from "@/components/modal";
 import Link from "next/link";
 import IconCheck from "@/public/assets/icon_cek_transaksi.png";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 type TransactionLayoutProps = {
     description : React.ReactNode;
     testimoni? : React.ReactNode;
@@ -23,8 +25,11 @@ type TransactionLayoutProps = {
 }
 
 const transactionLayout = ({description,testimoni,form,product,quantity,paymentMethod,promo,contact, buttonSubmit } : TransactionLayoutProps) => {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [valueCheck, setValueCheck] = useState([]);
+    const [formDataState, setFormDataState] = useState({});
+
     const toggle = () => {
         setIsOpen(!isOpen);
     }
@@ -37,6 +42,7 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
     const isCekValue = context?.isCek;
     const elementAccountRef = context?.elementAccountRef;
     const setLoadingCheck = context?.setLoadingCheck ?? (() => {});
+    const loadingCheck = context?.loadingCheck;
     const order = async (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formElements = e.currentTarget.elements;
@@ -71,6 +77,7 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
         }else if( !contactValue){
             toast.error("Harap masukkan kontak anda.")
         }else{
+            setFormDataState(formData);
             if(isCekValue){
                 setLoadingCheck(true);
                 const responseCheck = await checkProduct(formData as Pembelian);
@@ -85,6 +92,20 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
             }
         }
     }
+
+    const handleOrderConfirmation  = async () => {
+        setLoadingCheck(true);
+        const responseOrder = await orderProduct(formDataState as Pembelian);
+        if(responseOrder.status === 200){
+            setLoadingCheck(false);
+            const invoiceId = responseOrder.data.invoice;
+            router.push(`/invoices/${invoiceId}`)
+        }else{
+            setLoadingCheck(false);
+            toast.error("Terjadi kesalahan, silahkan coba lagi.")
+        }
+    }
+
     return (
         <>        
             <div className="2xl:container 2xl:max-w-[80rem] xl:mx-auto mx-2 xl:pt-6 py-2.5 xl:pb-12 xl:max-w-[70rem]">
@@ -171,7 +192,37 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                 </div>
                 <div className="pt-4 pb-10 px-6 xl:flex xl:flex-row xl:gap-3 grid grid-cols-1 xl:text-base text-sm">
                     <a href="#" className="w-full py-2 bg-[#556EB1] text-white rounded-lg text-center xl:my-0 my-2" onClick={()=>toggle()}>Batalkan</a>
-                    <Link href="#" className="w-full py-2 bg-orange-500 text-white rounded-lg text-center order-first xl:order-2">Pesan Sekarang</Link>
+                    <button className="w-full flex justify-center py-2 bg-orange-500 text-white rounded-lg text-center order-first xl:order-2" onClick={handleOrderConfirmation }>
+                        Pesan Sekarang
+                        {
+                            loadingCheck && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="1.2em"
+                                    height="1.2em"
+                                    viewBox="0 0 24 24"
+                                    >
+                                    <path
+                                        fill="#fefefe"
+                                        d="M12,1A11,11,0,1,0,23,12,11,11,0,0,0,12,1Zm0,19a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"
+                                        opacity="0.25"
+                                    />
+                                    <path
+                                        fill="#fefefe"
+                                        d="M10.14,1.16a11,11,0,0,0-9,8.92A1.59,1.59,0,0,0,2.46,12,1.52,1.52,0,0,0,4.11,10.7a8,8,0,0,1,6.66-6.61A1.42,1.42,0,0,0,12,2.69h0A1.57,1.57,0,0,0,10.14,1.16Z"
+                                    >
+                                        <animateTransform
+                                        attributeName="transform"
+                                        dur="0.75s"
+                                        repeatCount="indefinite"
+                                        type="rotate"
+                                        values="0 12 12;360 12 12"
+                                        />
+                                    </path>
+                                </svg>
+                            )
+                        }
+                    </button>
                 </div>
             </Modal>
         </>

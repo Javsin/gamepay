@@ -1,4 +1,6 @@
-const infoAccount = () => {
+'use client'
+
+const infoAccount = ({data} : any) => {
     const userInfo = [
         { label: 'Nickname', value: 'Kuceng_orens' },
         { label: 'ID', value: '9088090' },

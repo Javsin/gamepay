@@ -1,10 +1,11 @@
 'use client'
+
 import { Disclosure, Transition  } from '@headlessui/react'
 import ChevronUpIcon  from '@/public/assets/icon_chevronup.png'
 import Image from 'next/image'
 import { motion } from "framer-motion";
 
-const detailTransaction = () => {
+const detailTransaction = ({data} : any) => {
     return(
         <div className="bg-dark-blue-2 rounded-xl text-white p-4">
             <p className="font-bold mb-1">Detail Pembelian</p>
@@ -12,23 +13,23 @@ const detailTransaction = () => {
 
             <div className="grid grid-rows-2 gap-y-2 md:grid-cols-12 md:gap-y-0 border-t border-[#556EB1] py-4">
                 <div className="col-span-4">Nomor Invoice</div>
-                <div className="col-span-8">TPF09090909000</div>
+                <div className="col-span-8">{data.invoice}</div>
             </div>
             <div className="grid grid-rows-2 gap-y-2 md:grid-cols-12 md:gap-y-0 border-t border-[#556EB1] py-4">
                 <div className="col-span-4">Status Transaksi</div>
                 <div className="col-span-8">
-                    <button className="py-1 px-3 bg-yellow-400 rounded-md text-xs text-black font-medium">Pending</button>
+                    <button className="py-1 px-3 bg-yellow-400 rounded-md text-xs text-black font-medium">{data.transaction_status}</button>
                 </div>
             </div>
             <div className="grid grid-rows-2 gap-y-2 md:grid-cols-12 md:gap-y-0 border-t border-[#556EB1] py-4">
                 <div className="col-span-4">Status Pembayaran</div>
                 <div className="col-span-8">
-                    <button className="py-1 px-3 bg-[#e53e60] rounded-md text-xs font-medium">Unpaid</button>
+                    <button className="py-1 px-3 bg-[#e53e60] rounded-md text-xs font-medium">{data.transaction_payment}</button>
                 </div>
             </div>
             <div className="grid grid-rows-2 gap-y-2 md:grid-cols-12 md:gap-y-0 border-y border-[#556EB1] py-4">
                 <div className="col-span-4">Pesan</div>
-                <div className="col-span-8">Menunggu Pembayaran</div>
+                <div className="col-span-8">{data.message}</div>
             </div>
             <div className="grid grid-cols-12 mt-4 pb-5">
                 <div className='col-span-12 md:col-start-5 md:col-span-8'>
