@@ -179,7 +179,7 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                             return (
                                 <div className="col-span-1 gap-4 mb-6" key={index}>
                                     <div className="text-sm font-light">
-                                        {item.key}
+                                        {item.title}
                                     </div>
                                     <div className="font-medium">
                                         {item.value}
