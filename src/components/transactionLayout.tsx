@@ -29,7 +29,7 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
     const [isOpen, setIsOpen] = useState(false);
     const [valueCheck, setValueCheck] = useState([]);
     const [formDataState, setFormDataState] = useState({});
-
+    const [loading, setLoading] = useState(false);
     const toggle = () => {
         setIsOpen(!isOpen);
     }
@@ -68,7 +68,7 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
         formData['payment'] = paymentMethodValue;
         formData['promo'] = promoValue;
         formData['contact'] = contactValue;
-
+        
         if (hasEmptyFields || !quantityValue || !productValue || !paymentMethodValue ) {
             if (elementAccountRef?.current) {
                 elementAccountRef?.current.scrollIntoView({ behavior: 'smooth', block: 'start' } as ScrollIntoViewOptions);
@@ -77,7 +77,6 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
         }else if( !contactValue){
             toast.error("Harap masukkan kontak anda.")
         }else{
-            setFormDataState(formData);
             if(isCekValue){
                 setLoadingCheck(true);
                 const responseCheck = await checkProduct(formData as Pembelian);
@@ -94,14 +93,14 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
     }
 
     const handleOrderConfirmation  = async () => {
-        setLoadingCheck(true);
+        setLoading(true);
         const responseOrder = await orderProduct(formDataState as Pembelian);
         if(responseOrder.status === 200){
-            setLoadingCheck(false);
+            setLoading(false);
             const invoiceId = responseOrder.data.invoice;
             router.push(`/invoices/${invoiceId}`)
         }else{
-            setLoadingCheck(false);
+            setLoading(false);
             toast.error("Terjadi kesalahan, silahkan coba lagi.")
         }
     }
@@ -192,10 +191,10 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                 </div>
                 <div className="pt-4 pb-10 px-6 xl:flex xl:flex-row xl:gap-3 grid grid-cols-1 xl:text-base text-sm">
                     <a href="#" className="w-full py-2 bg-[#556EB1] text-white rounded-lg text-center xl:my-0 my-2" onClick={()=>toggle()}>Batalkan</a>
-                    <button className="w-full flex justify-center py-2 bg-orange-500 text-white rounded-lg text-center order-first xl:order-2" onClick={handleOrderConfirmation }>
+                    <button className="w-full flex justify-center py-2 bg-orange-500 text-white rounded-lg text-center order-first xl:order-2" disabled={loading} onClick={handleOrderConfirmation }>
                         Pesan Sekarang
                         {
-                            loadingCheck && (
+                            loading && (
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="1.2em"
