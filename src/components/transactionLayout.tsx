@@ -42,7 +42,6 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
     const isCekValue = context?.isCek;
     const elementAccountRef = context?.elementAccountRef;
     const setLoadingCheck = context?.setLoadingCheck ?? (() => {});
-    const loadingCheck = context?.loadingCheck;
     const order = async (e : React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formElements = e.currentTarget.elements;
@@ -84,6 +83,7 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                     setValueCheck(responseCheck.data);
                     toggle();
                     setLoadingCheck(false);
+                    setFormDataState(formData);
                 }else{
                     setLoadingCheck(false);
                     toast.error("Terjadi kesalahan, silahkan coba lagi.")
