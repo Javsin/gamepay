@@ -88,6 +88,17 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                     setLoadingCheck(false);
                     toast.error("Terjadi kesalahan, silahkan coba lagi.")
                 }
+            }else{
+                setLoadingCheck(true);
+                const responseOrder = await orderProduct(formData as Pembelian);
+                if(responseOrder.status === 200){
+                    setLoadingCheck(false);
+                    const invoiceId = responseOrder.data.invoice;
+                    router.push(`/invoices/${invoiceId}`)
+                }else{
+                    setLoadingCheck(false);
+                    toast.error("Terjadi kesalahan, silahkan coba lagi.")
+                }
             }
         }
     }
