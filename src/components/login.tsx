@@ -20,12 +20,16 @@ const signInPage = () => {
     const clicked = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const res = await signIn("credentials", {
-            username: user.current,
+            email: user.current,
             password: pass.current,
+            captcha: captchaValue,
             redirect: false,
         });
         if (res?.ok) {
             router.push('/');
+        }else if (res?.status === 401) {
+            window.grecaptcha.reset();
+            alert('username / password salah')
         }
     }
 
@@ -53,7 +57,7 @@ const signInPage = () => {
                 </div>
                 <div className="flex flex-wrap -mx-3 my-2 px-3">
                     <ReCAPTCHA
-                        sitekey="YOUR_SITE_KEY"
+                        sitekey={`${process.env.NEXT_SITE_KEY}`}
                         onChange={handleCaptchaChange}
                         type="image"
                     />
