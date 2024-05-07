@@ -8,8 +8,23 @@ import Transaction from '@/public/assets/icon_cek_transaksi.png';
 import Search from '@/public/assets/icon_search.png';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
+import { signOut, useSession } from 'next-auth/react';
+import { useState } from 'react';
+
 const navDesktop = ({toggle} : {toggle: () => void}) => {
     const pathname = usePathname()
+    const { data: session } : any = useSession();
+
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const handleDropdownToggle = () => {
+        setShowDropdown(!showDropdown);
+    };
+
+    const logoutHandler = async () => {
+        await signOut();
+    }
+
     return (
         <>
             <div className={`bg-dark-blue sticky w-full top-0 z-[51] items-center justify-between hidden xl:block`}>
@@ -48,12 +63,32 @@ const navDesktop = ({toggle} : {toggle: () => void}) => {
                                         <span>Search</span>
                                     </div>
                                 </div>
-                                <a href='/sign-in' className='text-white font-medium block px-1 mx-2 py-5 float-left  border-b-2 border-transparent hover:border-orange-500'>Masuk</a>
-                                <a href='/sign-up' className='text-white font-medium block px-3 py-5 float-left'>
-                                    <span className='bg-orange-500 rounded-lg px-4 py-2'>
-                                        Daftar
-                                    </span>
-                                </a>
+                                {
+                                    session?.user ? (
+                                        <>
+                                            <button onClick={handleDropdownToggle} className="text-white font-medium block items-center px-3 py-5 focus:outline-none">
+                                                <span className="bg-orange-500 rounded-lg px-4 py-2">
+                                                    {session.user.user.name}
+                                                </span>
+                                            </button>
+                                            {showDropdown && (
+                                                <div className="absolute right-24 bg-white rounded-lg shadow-lg overflow-hidden">
+                                                    <a href='#' className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dashboard</a>
+                                                    <button onClick={logoutHandler} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200 focus:outline-none">Logout</button>
+                                                </div>
+                                            )}
+                                            </>
+                                    ) : (
+                                        <>
+                                            <a href='/sign-in' className='text-white font-medium block px-1 mx-2 py-5 float-left  border-b-2 border-transparent hover:border-orange-500'>Masuk</a>
+                                            <a href='/sign-up' className='text-white font-medium block px-3 py-5 float-left'>
+                                                <span className='bg-orange-500 rounded-lg px-4 py-2'>
+                                                    Daftar
+                                                </span>
+                                            </a>
+                                        </>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>

@@ -123,12 +123,12 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                                     </ul>
                                 </div>
                                 <div className='div px-4 fixed bottom-0 my-4 w-3/4'>
-                                    <button className='w-full bg-dark-blue text-white rounded-lg py-2 mb-8'>
-                                            Masuk
-                                        </button>
-                                    <button className='w-full bg-orange-500 text-white rounded-lg py-2'>
+                                    <a href='/sign-in' className='w-full block text-center bg-dark-blue text-white rounded-lg py-2 mb-8'>
+                                        Masuk
+                                    </a>
+                                    <a href='/sign-up' className='w-full block text-center bg-orange-500 text-white rounded-lg py-2'>
                                         Daftar
-                                    </button>
+                                    </a>
                                 </div>
                             </nav>
                         </div>

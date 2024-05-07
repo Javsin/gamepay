@@ -9,7 +9,7 @@ import styles from './cardProduct/styleone/styleone.module.css'
 import { useSession } from "next-auth/react";
 const loadProduct = () => {
     const { data: session } = useSession();
-    console.log(session);
+    console.log("aa", session);
     const context = useAppContext();
     const product = context?.state as Menu[];
     const id = context?.idCategory;

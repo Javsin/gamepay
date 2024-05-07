@@ -21,11 +21,11 @@ const MainLayout = ({ children, data, dataFooter }: Props) => {
     }, [data, setState]);
     return (
         <>
-            <Navigation title="Main Layout" />
-                <SessionProvider>
+            <SessionProvider>
+                <Navigation title="Main Layout" />
                     {children}
-                </SessionProvider>
-            <Footer data={data} dataFooter={dataFooter}/>
+                <Footer data={data} dataFooter={dataFooter}/>
+            </SessionProvider>
         </>
     );
 }
