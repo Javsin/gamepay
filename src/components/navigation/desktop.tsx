@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-'use client'
 import Image from 'next/image';
 import muraGames from '@/public/assets/mura_gemes_200px.png';
 import Home from '@/public/assets/icon_home.png';
@@ -66,27 +65,27 @@ const navDesktop = ({toggle} : {toggle: () => void}) => {
                                 {
                                     session?.user ? (
                                         <>
-                                            <button onClick={handleDropdownToggle} className="text-white font-medium block items-center px-3 py-5 focus:outline-none">
+                                            <button onClick={handleDropdownToggle} className={`text-white font-medium block items-center px-3 py-5 focus:outline-none ${session?.user ? 'block' : 'hidden'}`}>
                                                 <span className="bg-orange-500 rounded-lg px-4 py-2">
                                                     {session.user.user.name}
                                                 </span>
                                             </button>
                                             {showDropdown && (
-                                                <div className="absolute right-24 bg-white rounded-lg shadow-lg overflow-hidden">
+                                                <div className="absolute xl:right-24 2xl:right-[18.2rem] bg-white rounded-lg shadow-lg overflow-hidden">
                                                     <a href='#' className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dashboard</a>
                                                     <button onClick={logoutHandler} className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200 focus:outline-none">Logout</button>
                                                 </div>
                                             )}
-                                            </>
+                                        </>
                                     ) : (
-                                        <>
+                                        <div className={`${session?.user ? 'block' : 'hidden'}`} >
                                             <a href='/sign-in' className='text-white font-medium block px-1 mx-2 py-5 float-left  border-b-2 border-transparent hover:border-orange-500'>Masuk</a>
                                             <a href='/sign-up' className='text-white font-medium block px-3 py-5 float-left'>
                                                 <span className='bg-orange-500 rounded-lg px-4 py-2'>
                                                     Daftar
                                                 </span>
                                             </a>
-                                        </>
+                                        </div>
                                     )
                                 }
                             </div>
