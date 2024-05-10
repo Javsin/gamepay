@@ -67,17 +67,16 @@ const signUpPage = () => {
         const res = await registerUser(data);
 
         if (res && res.error) {
-            const { email, password } = res.error;
-        
-            if (email && email.length > 0) {
-                const emailErrorMessage = email[0];
-                toast.error(emailErrorMessage);
-            }
-        
-            if (password && password.length > 0) {
-                const passwordErrorMessage = password[0];
-                toast.error(passwordErrorMessage);
-            }
+            const errorFields = Object.keys(res.error);
+
+            errorFields.forEach(field => {
+                const errorMessages = res.error[field];
+                if (errorMessages && errorMessages.length > 0) {
+                    const errorMessage = errorMessages[0];
+                    toast.error(errorMessage);
+                }
+            });
+
         }else{
             toast.success('Selamat Pendaftaran Berhasil');
             router.push('/sign-in');
