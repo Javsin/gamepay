@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client';
-import { signIn } from "next-auth/react";
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,6 +9,7 @@ import IconIndonesia from "@/public/assets/icon_indonesia.png"
 import Image from "next/image";
 import ReCAPTCHA from 'react-google-recaptcha';
 import { ToastContainer, toast } from 'react-toastify';
+import registerUser from "@/actions/auth/registerUser";
 
 const signUpPage = () => {
     const router = useRouter();
@@ -56,22 +56,34 @@ const signUpPage = () => {
             return;
         }
 
-        alert("ok");
-        // const res = await signIn("credentials", {
-        //     fullName: fullName.current,
-        //     name: username.current,
-        //     email: email.current,
-        //     password: password.current,
-        //     captcha: captchaValue,
-        //     redirect: false,
-        // });
-        // if (res?.ok) {
-        //     router.push('/');
-        // }else if (res?.status === 401) {
-        //     window.grecaptcha.reset();
-        //     alert('Pendaftaran Gagal')
-        // }
+        const data = {
+            name: username.current,
+            fullname: fullName.current,
+            email: email.current,
+            password: password.current,
+            captcha: captchaValue,
+        };
+
+        const res = await registerUser(data);
+
+        if (res && res.error) {
+            const { email, password } = res.error;
+        
+            if (email && email.length > 0) {
+                const emailErrorMessage = email[0];
+                toast.error(emailErrorMessage);
+            }
+        
+            if (password && password.length > 0) {
+                const passwordErrorMessage = password[0];
+                toast.error(passwordErrorMessage);
+            }
+        }else{
+            toast.success('Selamat Pendaftaran Berhasil');
+            router.push('/sign-in');
+        }
     }
+
     return (
         <>
             <div className="relative w-full xl:w-1/2 flex flex-col min-h-screen items-start justify-center px-4 sm:px-32">

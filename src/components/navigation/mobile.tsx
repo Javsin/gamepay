@@ -9,11 +9,14 @@ import Transaction from '@/public/assets/icon_cek_transaksi.png';
 import Search from '@/public/assets/icon_search.png';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
+import { signOut, useSession } from 'next-auth/react';
 const MobileNav = ({toggle} : {toggle: () => void}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [menuContainer, setMenuContainer] = useState<HTMLElement | null>(null);
     const menuRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
+    const { data: session } : any = useSession();
+
     useEffect(() => {
         // Create a container for the portal when the component mounts
         const portalRoot = document.createElement('div');
@@ -51,6 +54,9 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
     const modalToggle = () => {
         setIsOpen(false);
         toggle();
+    }
+    const logoutHandler = async () => {
+        await signOut();
     }
     return (
         <>
@@ -122,14 +128,26 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                                         </li>
                                     </ul>
                                 </div>
-                                <div className='div px-4 fixed bottom-0 my-4 w-3/4'>
-                                    <a href='/sign-in' className='w-full block text-center bg-dark-blue text-white rounded-lg py-2 mb-8'>
-                                        Masuk
-                                    </a>
-                                    <a href='/sign-up' className='w-full block text-center bg-orange-500 text-white rounded-lg py-2'>
-                                        Daftar
-                                    </a>
-                                </div>
+                                {
+                                    session?.user ? (
+                                        <div className='div px-4 fixed bottom-0 my-4 w-3/4'>
+                                            <a href='/' className='w-full block text-center bg-dark-blue text-white rounded-lg py-2 mb-8'>
+                                                Dashboard
+                                            </a>
+                                            <button onClick={logoutHandler} className="w-full block text-center bg-orange-500 text-white rounded-lg py-2">Logout</button>
+                                        </div>
+                                    ) : (
+                                        <div className='div px-4 fixed bottom-0 my-4 w-3/4'>
+                                            <a href='/sign-in' className='w-full block text-center bg-dark-blue text-white rounded-lg py-2 mb-8'>
+                                                Masuk
+                                            </a>
+                                            <a href='/sign-up' className='w-full block text-center bg-orange-500 text-white rounded-lg py-2'>
+                                                Daftar
+                                            </a>
+                                        </div>
+                                    )
+                                }
+
                             </nav>
                         </div>
                         

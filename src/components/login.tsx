@@ -29,7 +29,7 @@ const signInPage = () => {
         if (res?.ok) {
             router.push('/');
         }else if (res?.status === 401) {
-            window.grecaptcha.reset();
+            (window as any).grecaptcha.reset();
             toast.error("username / password salah")
         }
     }
