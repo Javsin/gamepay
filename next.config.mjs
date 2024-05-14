@@ -8,8 +8,8 @@ const nextConfig = {
                 pathname: '**'
             },
             {
-                protocol: 'http',
-                hostname: '192.168.5.14',
+                protocol: 'https',
+                hostname: 'admin.muragame.id',
                 pathname: '**'
             }
         ],
