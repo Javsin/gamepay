@@ -15,7 +15,7 @@ interface infoPaymentProps {
     time: number 
 }
 
-const infoPayment = ({data, time} : infoPaymentProps) => {
+const InfoPayment = ({data, time} : infoPaymentProps) => {
     const qrData = data?.payment_detail?.qris_data;
     const expired = data?.payment_detail?.exp;
     const { payment_methode } = data;
@@ -87,4 +87,4 @@ const infoPayment = ({data, time} : infoPaymentProps) => {
     )
 }
 
-export default infoPayment
+export default InfoPayment

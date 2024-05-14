@@ -1,13 +1,13 @@
 'use client'
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ImageSearch from '@/public/assets/icon_search.png';
 import getDataInvoice from "@/actions/transaction/getDataInvoice";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from 'react-toastify';
 
-const findInvoice = () => {
+const FindInvoice = () => {
     const router = useRouter();
     const [invoiceId, setInvoiceId] = useState("");
     const [loading, setLoading] = useState<boolean>(false);
@@ -102,4 +102,4 @@ const findInvoice = () => {
     )
 }
 
-export default findInvoice;
+export default FindInvoice;
