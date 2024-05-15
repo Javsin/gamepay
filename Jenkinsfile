@@ -10,18 +10,14 @@ pipeline {
             }
         }
 
-        // stage("Deploy Niagahoster") { // Notifikasi ke Telegram bahwa build selesai
-        //     steps {
-        //         script {
-        //             deployToSSH("SSH Niagahoster", "cd /home/u0659952/public_html/apps.murapay.id && git reset --hard HEAD && git pull")
-        //         }
-        //     }
-        // }
-
-        stage("Deploy Aapanel") { // Notifikasi ke Telegram bahwa build selesai
+        stage("Deploy NextJS Server") { // Notifikasi ke Telegram bahwa build selesai
             steps {
                 script {
-                    deployToSSH("SSH Aapanel", "cd /var/www/admin.muragame.id && git reset --hard HEAD && git pull")
+                    deployToSSH("SSH NextJS", """
+                        cd /var/www/gamepay && git reset --hard HEAD && git pull
+                        cd /var/www/gamepay && npm install
+                        cd /var/www/gamepay && npm run build
+                    """)
                 }
             }
         }
