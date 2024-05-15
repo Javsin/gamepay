@@ -5,7 +5,7 @@ import { DataLayout } from '@/types/infoLayoutType';
 import { useAppContext } from '@/context/infoLayout';
 import { useEffect } from 'react';
 import { Datafooter } from '@/types/datafooterType';
-
+import { SessionProvider } from 'next-auth/react';
 type Props = {
     children: React.ReactNode;
     data: DataLayout;
@@ -21,9 +21,11 @@ const MainLayout = ({ children, data, dataFooter }: Props) => {
     }, [data, setState]);
     return (
         <>
-            <Navigation title="Main Layout" />
-                {children}
-            <Footer data={data} dataFooter={dataFooter}/>
+            <SessionProvider>
+                <Navigation title="Main Layout" />
+                    {children}
+                <Footer data={data} dataFooter={dataFooter}/>
+            </SessionProvider>
         </>
     );
 }

@@ -6,7 +6,7 @@ export default function Contact() {
     const context = useAppContext();
     const loadingCheck = context?.loadingCheck;
     return (
-        <button type="submit" className='w-full flex py-2 bg-orange-500 text-white rounded-lg justify-center items-center gap-2'>
+        <button type="submit" className='w-full flex py-2 bg-orange-500 text-white rounded-lg justify-center items-center gap-2' disabled={loadingCheck}>
             Top Up Sekarang
             {
                 loadingCheck && (

@@ -3,6 +3,7 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet, pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
+import { InvoiceData } from '@/types/invoiceType';
 
 const styles = StyleSheet.create({
     page: {
@@ -46,64 +47,57 @@ const styles = StyleSheet.create({
     },
 });
 
-interface InvoiceData {
-    orderNumber: string;
-    productName: string;
-    productQuantity: number;
-    productPrice: number;
-    totalAmount: number;
-    nickname: string;
-    userId: string;
-    server: string;
-    paymentMethod: string;
-}
+
 
 const generatePDF = async (data: InvoiceData) => {
+    const {invoice, product_name, qty, transaction_payment, payment_methode, transaction_status, message} = data
+    const {tagihan, total_tagihan} = data?.payment_detail;
+
     const doc = (
         <Document>
             <Page size="A4" style={styles.page}>
                 <View style={styles.section}>
                     <Text style={styles.header}>Invoice</Text>
                     <Text style={styles.contentLarge}>Harap Lengkapi Pembayaran</Text>
-                    <Text style={[styles.textSmall, {color: "gray"}]}>Pesanan kamu {data.orderNumber} menunggu pembayaran</Text>
+                    <Text style={[styles.textSmall, {color: "gray"}]}>Pesanan kamu {invoice} menunggu pembayaran</Text>
                     <View style={{ marginBottom: 20 }} />
                     <View style={styles.separator} />
                     <View style={{ marginBottom: 10 }} />
-                    <Text style={styles.textSmall}>{data.productName}</Text>
-                    <Text style={[styles.textSmall, {color: "gray"}]}>{data.productQuantity} (367 + 41) Diamonds</Text>
+                    {/* <Text style={styles.textSmall}>{product_name}</Text> */}
+                    <Text style={[styles.textSmall, {color: "gray"}]}>Pembelian produk {qty} {product_name}</Text>
                     <View style={{ marginBottom: 20 }} />
-                    <Text style={styles.textSmall}>Nickname: {data.nickname}</Text>
-                    <Text style={styles.textSmall}>ID: {data.userId}</Text>
-                    <Text style={styles.textSmall}>Server: {data.server}</Text>
+                    <Text style={styles.textSmall}>Nickname: Testing</Text>
+                    <Text style={styles.textSmall}>ID: 11233445</Text>
+                    <Text style={styles.textSmall}>Server: 1234</Text>
                     <View style={{ marginBottom: 20 }} />
                     {/* <View style={styles.separator} /> */}
                     <Text style={[styles.content, {color: "gray"}]}>Rincian Pembayaran</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={[styles.textSmall, {color: "gray"}]}>Total Pembayaran</Text>
-                        <Text style={styles.textSmall}>Rp. {data.totalAmount}</Text>
+                        <Text style={styles.textSmall}>Rp. {total_tagihan}</Text>
                     </View>
                     <View style={{ marginBottom: 20 }} />
                     <Text style={styles.content}>Metode Pembayaran</Text>
-                    <Text style={[styles.content, {color: "gray"}]}>{data.paymentMethod}</Text>
+                    <Text style={[styles.content, {color: "gray"}]}>{payment_methode}</Text>
                     <View style={{ marginBottom: 20 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={styles.textSmall}>Nomor Invoice</Text>
-                        <Text style={styles.textSmall}>TP090909099</Text>
+                        <Text style={styles.textSmall}>{invoice}</Text>
                     </View>
                     <View style={{ marginBottom: 10 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={styles.textSmall}>Status Transaksi</Text>
-                        <Text style={styles.textSmall}>Pending</Text>
+                        <Text style={styles.textSmall}>{transaction_status}</Text>
                     </View> 
                     <View style={{ marginBottom: 10 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={styles.textSmall}>Status Pembayaran</Text>
-                        <Text style={styles.textSmall}>Unpaid</Text>
+                        <Text style={styles.textSmall}>{transaction_payment}</Text>
                     </View>
                     <View style={{ marginBottom: 10 }} />
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={styles.textSmall}>Pesan</Text>
-                        <Text style={styles.textSmall}>Menunggu Pembayaran</Text>
+                        <Text style={styles.textSmall}>{message}</Text>
                     </View>
                     <View style={{ marginBottom: 20 }} />
                     <View style={styles.separator} />

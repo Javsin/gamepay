@@ -1,4 +1,12 @@
-const infoAccount = () => {
+'use client'
+
+import { InvoiceData } from "@/types/invoiceType";
+
+interface infoAccountProp {
+    data: InvoiceData;
+}
+
+const infoAccount = ({data} : infoAccountProp) => {
     const userInfo = [
         { label: 'Nickname', value: 'Kuceng_orens' },
         { label: 'ID', value: '9088090' },
@@ -10,7 +18,7 @@ const infoAccount = () => {
             <p className='mb-4 font-medium'>Informasi Akun</p>
             {
                 userInfo.map((item, index) => (
-                    <div className="grid grid-cols-12 border-t border-[#556EB1] py-3" key={index}>
+                    <div className="grid grid-rows-2 gap-y-2 md:grid-cols-12 md:gap-y-0 border-t border-[#556EB1] py-3" key={index}>
                         <div className="col-span-4">{item.label}</div>
                         <div className="col-span-8">{item.value}</div>
                     </div>

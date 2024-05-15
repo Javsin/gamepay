@@ -9,11 +9,14 @@ import Transaction from '@/public/assets/icon_cek_transaksi.png';
 import Search from '@/public/assets/icon_search.png';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
+import { signOut, useSession } from 'next-auth/react';
 const MobileNav = ({toggle} : {toggle: () => void}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [menuContainer, setMenuContainer] = useState<HTMLElement | null>(null);
     const menuRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
+    const { data: session } : any = useSession();
+
     useEffect(() => {
         // Create a container for the portal when the component mounts
         const portalRoot = document.createElement('div');
@@ -52,13 +55,18 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
         setIsOpen(false);
         toggle();
     }
+    const logoutHandler = async () => {
+        await signOut();
+    }
     return (
         <>
             {/* Your navigation toggle button */}
             <div className={`${isOpen ? "fixed inset-0 overflow-hidden z-50 bg-gray-300 opacity-75" : "" }`}></div>
             <div className={`bg-dark-blue xl:hidden fixed w-full z-50 top-0 flex items-center justify-between ${isOpen ? 'opacity-0 z-0' : ''}`}>
                 <div className='p-2'>
-                    <Image src={muraGames} alt='logo' width={0} height={0} sizes='100vw' className='object-cover w-full h-10' />
+                    <Link href='/'>
+                        <Image src={muraGames} alt='logo' width={0} height={0} sizes='100vw' className='object-cover w-full h-10' />
+                    </Link>
                 </div>
                 <div className="p-2 z-20">
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 48 48" onClick={()=>{toggleMenu()}}>
@@ -122,14 +130,26 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                                         </li>
                                     </ul>
                                 </div>
-                                <div className='div px-4 fixed bottom-0 my-4 w-3/4'>
-                                    <button className='w-full bg-dark-blue text-white rounded-lg py-2 mb-8'>
-                                            Masuk
-                                        </button>
-                                    <button className='w-full bg-orange-500 text-white rounded-lg py-2'>
-                                        Daftar
-                                    </button>
-                                </div>
+                                {
+                                    session?.user ? (
+                                        <div className='div px-4 fixed bottom-0 my-4 w-3/4'>
+                                            <Link href='/' className='w-full block text-center bg-dark-blue text-white rounded-lg py-2 mb-8'>
+                                                Dashboard
+                                            </Link>
+                                            <button onClick={logoutHandler} className="w-full block text-center bg-orange-500 text-white rounded-lg py-2">Logout</button>
+                                        </div>
+                                    ) : (
+                                        <div className='div px-4 fixed bottom-0 my-4 w-3/4'>
+                                            <Link href='/sign-in' className='w-full block text-center bg-dark-blue text-white rounded-lg py-2 mb-8'>
+                                                Masuk
+                                            </Link>
+                                            <Link href='/sign-up' className='w-full block text-center bg-orange-500 text-white rounded-lg py-2'>
+                                                Daftar
+                                            </Link>
+                                        </div>
+                                    )
+                                }
+
                             </nav>
                         </div>
                         
