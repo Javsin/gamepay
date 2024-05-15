@@ -10,6 +10,7 @@ pipeline {
             }
         }
 
+
         stage("Deploy NextJS Server") { // Notifikasi ke Telegram bahwa build selesai
             steps {
                 script {
