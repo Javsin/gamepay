@@ -1,12 +1,15 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
-import { platform } from 'os';
+import { useState } from "react";
 import Select from 'react-select';
 type Props = {
     option: string[],
     label: string,
     placeholder: string,
+    name : string
 }
-const selectOption = ({option, label, placeholder} :Props) => {
+const selectOption = ({option, label, placeholder, name} :Props) => {
+    const [ valueServer, setValueServer] = useState<string>("")
     const options = option.map((item : string) => {
         return {
             value: item,
@@ -51,10 +54,16 @@ const selectOption = ({option, label, placeholder} :Props) => {
             }
         })
     };
+
+    const handleChange = (selectedOption : any) => {
+        setValueServer(selectedOption.value)
+    }
+
+
     return (
         <>
             <label className="block text-sm text-white mb-2">{label}</label>
-            <Select options={options} placeholder={placeholder} styles={customStyles}/>
+            <Select options={options} placeholder={placeholder} styles={customStyles} onChange={handleChange} name={name}/>
         </>
     );
 }

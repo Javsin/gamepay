@@ -32,7 +32,7 @@ const search = ({ isOpen, toggle }: Props) => {
         setSearch('');
     }, [isOpen]);
     return (
-        <Modal isOpen={isOpen} closeModal={toggle} title='' size='w-[35rem]' showClose={false} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-tl-2xl rounded-br-2xl'>
+        <Modal isOpen={isOpen} closeModal={toggle} title='' size='w-[35rem]' showClose={false} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-tl-2xl rounded-br-2xl pt-8 pb-6 px-6'>
             <>
                 <div className="flex items-center">
                     <div className="relative w-full">
