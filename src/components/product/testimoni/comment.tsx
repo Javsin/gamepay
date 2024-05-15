@@ -27,7 +27,7 @@ const comment = ({dataComment} : CommentProps) => {
                             <p className="text-xs text-white font-light">{comment.date}</p>
                         </div>
                         <div className="flex justify-between mb-1">
-                            <p className="text-xs text-white font-light">"{comment.comment}"</p>
+                            <p className="text-xs text-white font-light">&quot;{comment.comment}&quot;</p>
                         </div>
                     </div>
                 ))
