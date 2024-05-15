@@ -17,6 +17,11 @@ const nextConfig = {
         hostname: "192.168.5.12",
         pathname: "**",
       },
+      {
+        protocol: "http",
+        hostname: "10.10.0.109",
+        pathname: "**",
+      },
     ],
     // domains: ['images.rawpixel.com'],
   },
