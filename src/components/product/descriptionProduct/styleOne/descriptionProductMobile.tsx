@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import DOMPurify from 'dompurify'
 import { motion } from "framer-motion";
 
-const descriptionProductMobile = ( {html} : {html: string}) => {
+const DescriptionProductMobile = ( {html} : {html: string}) => {
     const [clean, setClean] = useState<string>('');
     useEffect(() => {
         setClean(DOMPurify.sanitize(html));
@@ -48,4 +48,4 @@ const descriptionProductMobile = ( {html} : {html: string}) => {
     )
 }
 
-export default descriptionProductMobile
+export default DescriptionProductMobile
