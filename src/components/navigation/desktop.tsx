@@ -9,12 +9,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react';
 import { useState } from 'react';
+import Modal from '../modal';
 
 const navDesktop = ({toggle} : {toggle: () => void}) => {
     const pathname = usePathname()
     const { data: session } : any = useSession();
 
     const [showDropdown, setShowDropdown] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleDropdownToggle = () => {
         setShowDropdown(!showDropdown);
@@ -22,6 +24,14 @@ const navDesktop = ({toggle} : {toggle: () => void}) => {
 
     const logoutHandler = async () => {
         await signOut();
+    }
+
+    const handleClickModal = () => {
+        setIsOpen(true);
+    }
+
+    const toggleModal = () => {
+        setIsOpen(!isOpen);
     }
 
     return (
@@ -48,7 +58,7 @@ const navDesktop = ({toggle} : {toggle: () => void}) => {
                                         <span>Cek Transaksi</span>
                                     </div>
                                 </Link>
-                                <Link href='/' className='text-white font-medium block px-1 mx-2 py-5 float-left border-b-2 border-transparent hover:border-orange-500'>
+                                <Link href='#' className='text-white font-medium block px-1 mx-2 py-5 float-left border-b-2 border-transparent hover:border-orange-500' onClick={handleClickModal}>
                                     <div className='flex items-center gap-1'>
                                         <Image src={Calculator} alt='calculator' width={0} height={0} sizes='100vw' className='object-cover w-4 h-4' />
                                         <span>Kalkulator</span>
@@ -95,6 +105,18 @@ const navDesktop = ({toggle} : {toggle: () => void}) => {
                     </div>
                 </div>
             </div>
+
+            <Modal isOpen={isOpen} closeModal={toggleModal} title='' size='w-[35rem]' showClose={true} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-2xl pt-8 pb-6 px-6'>
+                <>
+                    <div className='overflow-y-auto py-4 remove-scroll'>
+                        <div className='text-white my-2 w-full text-center'>
+                            <h1 className='text-center text-2xl'>
+                                Coming Soon!
+                            </h1>
+                        </div>
+                    </div>
+                </>
+            </Modal>
         </>
     );
 }
