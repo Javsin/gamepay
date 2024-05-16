@@ -14,7 +14,7 @@ pipeline {
         stage("Deploy NextJS Server") { // Notifikasi ke Telegram bahwa build selesai
             steps {
                 script {
-                    deployToSSH("SSH NextJS", "cd /var/www/gamepay && git reset --hard HEAD && git pull && npm install && npm run build")
+                    deployToSSH("SSH NextJS", "cd /var/www/gamepay && git reset --hard HEAD && git pull")
                 }
             }
         }
