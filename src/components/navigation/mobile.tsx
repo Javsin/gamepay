@@ -10,8 +10,10 @@ import Search from '@/public/assets/icon_search.png';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react';
+import Modal from '../modal';
 const MobileNav = ({toggle} : {toggle: () => void}) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const [menuContainer, setMenuContainer] = useState<HTMLElement | null>(null);
     const menuRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
@@ -58,6 +60,16 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
     const logoutHandler = async () => {
         await signOut();
     }
+    const handleClickModal = () => {
+        setIsOpen(false);
+        setIsOpenModal(true);
+    }
+
+    const toggleModal = () => {
+        setIsOpenModal(!isOpenModal);
+    }
+
+    
     return (
         <>
             {/* Your navigation toggle button */}
@@ -117,7 +129,7 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href='/kalkulator' className='font-medium py-2 flex items-center gap-1 link'>
+                                            <Link href='#' className='font-medium py-2 flex items-center gap-1 link' onClick={handleClickModal}>
                                                 <Image src={Calculator} alt='home' width={0} height={0} sizes='100vw' className='object-cover w-4 h-4' />
                                                 <span className={`border-b-2 ${pathname === '/kalkulator' ? ' border-orange-500' : 'border-transparent'}`}>Kalkulator</span>
                                             </Link>
@@ -156,6 +168,18 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                     </>,
                     menuContainer // Render inside the portal container
                 )}
+
+            <Modal isOpen={isOpenModal} closeModal={toggleModal} title='' size='w-[35rem]' showClose={true} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-2xl pt-8 pb-6 px-6'>
+                <>
+                    <div className='overflow-y-auto py-4 remove-scroll'>
+                        <div className='text-white my-2 w-full text-center'>
+                            <h1 className='text-center text-2xl'>
+                                Coming Soon!
+                            </h1>
+                        </div>
+                    </div>
+                </>
+            </Modal>
         </>
     )
 }
