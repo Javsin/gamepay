@@ -5,7 +5,7 @@ pipeline {
         stage("Notify Start") { // Notifikasi ke Telegram bahwa build dimulai
             steps {
                 script {
-                    sendMessageToTelegram("1")
+                    // sendMessageToTelegram("1")
                 }
             }
         }
@@ -14,7 +14,7 @@ pipeline {
         stage("Deploy NextJS Server") { // Notifikasi ke Telegram bahwa build selesai
             steps {
                 script {
-                    deployToSSH("SSH NextJS", "cd /var/www/gamepay && git reset --hard HEAD && git pull")
+                    deployToSSH("SSH NextJS", "cd /var/www/gamepay && git reset --hard HEAD && git pull & npm install")
                 }
             }
         }
@@ -23,12 +23,12 @@ pipeline {
     post {
         failure { // Notifikasi ke Telegram jika build gagal
             script {
-                sendMessageToTelegram("0")
+                // sendMessageToTelegram("0")
             }
         }
         success { // Notifikasi ke Telegram jika build sukses
             script {
-                sendMessageToTelegram("2")
+                // sendMessageToTelegram("2")
             }
         }
     }
