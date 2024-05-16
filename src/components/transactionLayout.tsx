@@ -125,7 +125,7 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                             {description}
                         </div>
                         <div className="my-7 hidden md:block">
-                            {testimoni}
+                            {/* {testimoni} */}
                         </div>
                     </div>
                     <div className="col-span-2">
