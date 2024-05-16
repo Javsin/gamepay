@@ -33,7 +33,7 @@ const cardDetailProduct = ({item, isCek} : {item: DetailProduct, isCek : boolean
         }
     }, [valueProduct])
     return (
-        <div key={item.id} className={`rounded-xl p-2 flex items-center justify-around cursor-pointer hover:text-dark-blue hover:border hover:border-orange-500 hover:bg-white ${className}`} onClick={() => handleClickProduct(item)}>
+        <div key={item.id} className={`rounded-xl p-2 flex items-center justify-between cursor-pointer hover:text-dark-blue hover:border hover:border-orange-500 hover:bg-white ${className}`} onClick={() => handleClickProduct(item)}>
             <div>
                 <div className="mt-2">
                     {item.product_name}
