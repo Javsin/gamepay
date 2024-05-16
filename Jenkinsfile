@@ -2,13 +2,13 @@ pipeline {
     agent any
 
     stages {
-        stage("Notify Start") { // Notifikasi ke Telegram bahwa build dimulai
-            steps {
-                script {
-                    // sendMessageToTelegram("1")
-                }
-            }
-        }
+        // stage("Notify Start") { // Notifikasi ke Telegram bahwa build dimulai
+        //     steps {
+        //         script {
+        //             sendMessageToTelegram("1")
+        //         }
+        //     }
+        // }
 
 
         stage("Deploy NextJS Server") { // Notifikasi ke Telegram bahwa build selesai
@@ -20,18 +20,18 @@ pipeline {
         }
     }
 
-    post {
-        failure { // Notifikasi ke Telegram jika build gagal
-            script {
-                // sendMessageToTelegram("0")
-            }
-        }
-        success { // Notifikasi ke Telegram jika build sukses
-            script {
-                // sendMessageToTelegram("2")
-            }
-        }
-    }
+    // post {
+    //     failure { // Notifikasi ke Telegram jika build gagal
+    //         script {
+    //             sendMessageToTelegram("0")
+    //         }
+    //     }
+    //     success { // Notifikasi ke Telegram jika build sukses
+    //         script {
+    //             sendMessageToTelegram("2")
+    //         }
+    //     }
+    // }
 }
 
 
