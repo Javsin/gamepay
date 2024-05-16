@@ -24,8 +24,12 @@ export default function Formorder({params} : {params: {productId: string}}) {
                         return (
                             <div key={key} className="mb-3">
                                 <div className="text-white text-lg font-bold flex gap-1 mb-4">
-                                    <Image src={products.data.items[key].icon_kategori} alt={products.data.items[key].kategori} width={0} height={0} sizes="100vw" className="w-6 h-auto" />
                                     {products.data.items[key].kategori}
+                                    {
+                                        products.data.items[key].icon_kategori !== "" && (
+                                            <Image src={products.data.items[key].icon_kategori} alt={products.data.items[key].kategori} width={0} height={0} sizes="100vw" className="w-6 h-auto" />
+                                        )
+                                    }
                                 </div>
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                                     {
