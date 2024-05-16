@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useAppContext } from "@/context/setOrder";
 import { useState,useEffect, use } from "react";
 import { formatRupiah } from '@/helpers/formatRupiah'
-import { px } from "framer-motion";
 
 const cardDetailProduct = ({item, isCek} : {item: DetailProduct, isCek : boolean}) => {
     const [className, setClassName] = useState<string>('bg-[#556EB1] text-white');
@@ -44,7 +43,10 @@ const cardDetailProduct = ({item, isCek} : {item: DetailProduct, isCek : boolean
                 </div>
             </div>
             <div>
-                <Image src={item.icon_product} alt={item.product_name} width={0} height={0} sizes="100vw" className="w-10 h-auto" /> 
+                {item.icon_product !== "" && (
+                    <Image src={item.icon_product} alt={item.product_name} width={0} height={0} sizes="100vw" className="w-10 h-auto" />
+                    )
+                } 
             </div>
         </div>
     )
