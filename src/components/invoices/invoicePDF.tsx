@@ -4,6 +4,7 @@ import React from 'react';
 import { Document, Page, Text, View, StyleSheet, pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 import { InvoiceData } from '@/types/invoiceType';
+import { formatRupiah } from '@/helpers/formatRupiah';
 
 const styles = StyleSheet.create({
     page: {
@@ -52,7 +53,6 @@ const styles = StyleSheet.create({
 const generatePDF = async (data: InvoiceData) => {
     const {invoice, product_name, qty, transaction_payment, payment_methode, transaction_status, message} = data
     const {tagihan, total_tagihan} = data?.payment_detail;
-
     const doc = (
         <Document>
             <Page size="A4" style={styles.page}>
@@ -66,15 +66,15 @@ const generatePDF = async (data: InvoiceData) => {
                     {/* <Text style={styles.textSmall}>{product_name}</Text> */}
                     <Text style={[styles.textSmall, {color: "gray"}]}>Pembelian produk {qty} {product_name}</Text>
                     <View style={{ marginBottom: 20 }} />
-                    <Text style={styles.textSmall}>Nickname: Testing</Text>
+                    {/* <Text style={styles.textSmall}>Nickname: Testing</Text>
                     <Text style={styles.textSmall}>ID: 11233445</Text>
-                    <Text style={styles.textSmall}>Server: 1234</Text>
+                    <Text style={styles.textSmall}>Server: 1234</Text> */}
                     <View style={{ marginBottom: 20 }} />
                     {/* <View style={styles.separator} /> */}
                     <Text style={[styles.content, {color: "gray"}]}>Rincian Pembayaran</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                         <Text style={[styles.textSmall, {color: "gray"}]}>Total Pembayaran</Text>
-                        <Text style={styles.textSmall}>Rp. {total_tagihan}</Text>
+                        <Text style={styles.textSmall}>{formatRupiah(total_tagihan)}</Text>
                     </View>
                     <View style={{ marginBottom: 20 }} />
                     <Text style={styles.content}>Metode Pembayaran</Text>
