@@ -1,6 +1,6 @@
 import React from 'react';
 import DetailTransaction from '@/components/invoices/detailTransaction';
-import InfoAccount from '@/components/invoices/infoAccount';
+// import InfoAccount from '@/components/invoices/infoAccount';
 import InfoPayment from '@/components/invoices/infoPayment';
 import getDataInvoice from '@/actions/transaction/getDataInvoice';
 import ButtonDownloadInvoice from '@/components/invoices/buttonDownloadInvoice';
@@ -23,7 +23,7 @@ const detailInvoice = ({params} : {params: {invoiceId: string}}) => {
                 <div className="grid grid-cols-12 gap-3 mt-4">
                     <div className="col-span-12 md:col-span-8">
                         <DetailTransaction data={data} />
-                        <InfoAccount data={data} />
+                        {/* <InfoAccount data={data} /> */}
                     </div>
                     <div className="col-span-12 md:col-span-4">
                         <ButtonDownloadInvoice data={data} />

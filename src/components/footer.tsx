@@ -4,6 +4,7 @@ import { Datafooter } from "@/types/datafooterType";
 import Image from "next/image";
 import FooterImage from "@/public/assets/background_footer.png";
 import Logo from "@/public/assets/mura_gemes_200px.png";
+import Link from "next/link";
 type Props = {
     data: DataLayout;
     dataFooter: Datafooter;
@@ -43,13 +44,19 @@ const Footer = ({ data, dataFooter }: Props) => {
                                     <span className="font-semibold">Peta Situs</span>
                                 </div>
                                 <div className="py-1">
-                                    Home
+                                    <Link href="/">
+                                        Home
+                                    </Link>
                                 </div>
                                 <div className="py-1">
-                                    Cek Transaksi
+                                    <Link href="/invoices">
+                                        Produk
+                                    </Link>
                                 </div>
                                 <div className="py-1">
-                                    Hubungi Kami
+                                    <a href="https://api.whatsapp.com/send/?phone=6281329701020&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
+                                        Hubungi Kami
+                                    </a>
                                 </div>
                             </div>
                             <div>
