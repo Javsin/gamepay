@@ -21,8 +21,14 @@ const detailTransaction = ({data} : detailProps) => {
         pending: 'bg-yellow-400',
     };
 
+    const statusPaymentColors : any = {
+        success : 'bg-green-500',
+        failed : 'bg-[#e53e60]',
+        pending : 'bg-yellow-400',
+    }
+
     const paymentColors = statusColors [transaction_payment];
-    const transactionColors = statusColors [transaction_status];
+    const transactionColors = statusPaymentColors [transaction_status];
     return(
         <div className="bg-dark-blue-2 rounded-xl text-white p-4">
             <p className="font-bold mb-1">Detail Pembelian</p>
@@ -35,13 +41,13 @@ const detailTransaction = ({data} : detailProps) => {
             <div className="grid gap-y-2 md:grid-cols-12 md:gap-y-0 border-t border-[#556EB1] py-5">
                 <div className="col-span-4">Status Transaksi</div>
                 <div className="col-span-8">
-                    <button className={`py-1 px-3 rounded-md text-xs text-black font-medium ${transactionColors}`}>{transaction_status}</button>
+                    <span className={`py-1 px-3 rounded-md text-xs text-white font-medium ${transactionColors}`}>{transaction_status.toLocaleUpperCase()}</span>
                 </div>
             </div>
             <div className="grid gap-y-2 md:grid-cols-12 md:gap-y-0 border-t border-[#556EB1] py-5">
                 <div className="col-span-4">Status Pembayaran</div>
                 <div className="col-span-8">
-                    <button className={`py-1 px-3 rounded-md text-black text-xs font-medium ${paymentColors}`}>{transaction_payment}</button>
+                    <span className={`py-1 px-3 rounded-md text-white text-xs font-medium ${paymentColors}`}>{transaction_payment.toLocaleUpperCase()}</span>
                 </div>
             </div>
             <div className="grid gap-y-2 md:grid-cols-12 md:gap-y-0 border-y border-[#556EB1] py-5">
