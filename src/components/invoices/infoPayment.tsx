@@ -18,6 +18,7 @@ interface infoPaymentProps {
 const InfoPayment = ({data, time} : infoPaymentProps) => {
     const qrData = data?.payment_detail?.qris_data;
     const expired = data?.payment_detail?.exp;
+    const paymentStatus = data?.transaction_payment;
     const { payment_methode } = data;
     const qrCodeRef = useRef(null);
 
@@ -35,10 +36,14 @@ const InfoPayment = ({data, time} : infoPaymentProps) => {
 
     return(
         <div className="mt-3 bg-dark-blue-2 rounded-xl py-4 px-3">
-            <div className="bg-gray-300 text-center px-6 py-3 mb-5 rounded-lg">
-                <p className='font-light'>Lakukan pembayaran sebelum</p>
-                <CountdownTimer expired={expired} time={time} />
-            </div>
+            {
+                paymentStatus === 'unpaid' && (
+                    <div className="bg-gray-300 text-center px-6 py-3 mb-5 rounded-lg">
+                        <p className='font-light'>Lakukan pembayaran sebelum</p>
+                        <CountdownTimer expired={expired} time={time} />
+                    </div>
+                )
+            }
             <div className="bg-[#556EB1] text-white px-6 py-3 mb-5 rounded-lg">
                 <p>Metode Pembayaran</p>
                 <p className="">{payment_methode}</p>
@@ -75,14 +80,18 @@ const InfoPayment = ({data, time} : infoPaymentProps) => {
                     </>
                 )}
             </Disclosure>
-            <div className='flex flex-col w-full justify-center items-center mx-auto py-12'>
-                <div ref={qrCodeRef} className='w-3/4  flex items-center justify-center p-6 bg-white rounded-xl shadow shadow-gray-400'>
-                    <QRCodeSVG value={qrData} size={205} height={205} width={205} />
-                </div>
-                <button className='w-3/4 mt-6 py-2 px-5 bg-orange-600 text-white text-sm text-center rounded-md' onClick={saveAsImage}>
-                    Unduh kode QR
-                </button>
-            </div>
+            {
+                paymentStatus === 'unpaid' && (
+                    <div className='flex flex-col w-full justify-center items-center mx-auto py-12'>
+                        <div ref={qrCodeRef} className='w-3/4  flex items-center justify-center p-6 bg-white rounded-xl shadow shadow-gray-400'>
+                            <QRCodeSVG value={qrData} size={205} height={205} width={205} />
+                        </div>
+                        <button className='w-3/4 mt-6 py-2 px-5 bg-orange-600 text-white text-sm text-center rounded-md' onClick={saveAsImage}>
+                            Unduh kode QR
+                        </button>
+                    </div>
+                )
+            }  
         </div>
     )
 }
