@@ -48,10 +48,10 @@ def deployToSSH(configName, execCommand) {
                         sshTransfer(
                             execCommand: execCommand // Perintah SSH yang akan dijalankan)
                         )
-                    ]// Tampilkan output perintah SSH
+                    ],
+                    verbose: true // Tampilkan output perintah SSH
                 )
-            ],
-            verbose: true // Tampilkan output perintah SSH
+            ]
         )
     }
 }
