@@ -82,8 +82,7 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                 </div>
                 <div className="p-2 z-20 flex gap-x-5">
                     <span onClick={modalToggle} className='font-medium flex items-center gap-1 link'>
-                        <Image src={Search} alt='home' width={0} height={0} sizes='100vw' className='object-cover w-4 h-4' />
-                        <span className={`border-b-2 ${pathname === '/cek-transaksi' ? ' border-orange-500' : 'border-transparent text-white'}`}>Search</span>
+                        <Image src={Search} alt='home' width={0} height={0} sizes='100vw' className='object-cover w-5 h-5' />
                     </span>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 48 48" onClick={()=>{toggleMenu()}}>
                         <g id="Group_6445" data-name="Group 6445" transform="translate(-263 -485)">
