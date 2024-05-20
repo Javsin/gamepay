@@ -152,9 +152,9 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                                 {buttonSubmit}
                             </div>
                         </form>
-                        <div className="my-16 block md:hidden">
+                        {/* <div className="my-16 block md:hidden">
                             {testimoni}
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
