@@ -80,7 +80,11 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                         <Image src={muraGames} alt='logo' width={0} height={0} sizes='100vw' className='object-cover w-full h-10' />
                     </Link>
                 </div>
-                <div className="p-2 z-20">
+                <div className="p-2 z-20 flex gap-x-5">
+                    <span onClick={modalToggle} className='font-medium flex items-center gap-1 link'>
+                        <Image src={Search} alt='home' width={0} height={0} sizes='100vw' className='object-cover w-4 h-4' />
+                        <span className={`border-b-2 ${pathname === '/cek-transaksi' ? ' border-orange-500' : 'border-transparent text-white'}`}>Search</span>
+                    </span>
                     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 48 48" onClick={()=>{toggleMenu()}}>
                         <g id="Group_6445" data-name="Group 6445" transform="translate(-263 -485)">
                             <path id="Path_2329" data-name="Path 2329" d="M10,0H38A10,10,0,0,1,48,10V38A10,10,0,0,1,38,48H10A10,10,0,0,1,0,38V10A10,10,0,0,1,10,0Z" transform="translate(263 485)" fill="none" />
@@ -134,12 +138,12 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                                                 <span className={`border-b-2 ${pathname === '/kalkulator' ? ' border-orange-500' : 'border-transparent'}`}>Kalkulator</span>
                                             </Link>
                                         </li>
-                                        <li>
+                                        {/* <li>
                                             <span onClick={modalToggle} className='font-medium py-2 flex items-center gap-1 link'>
                                                 <Image src={Search} alt='home' width={0} height={0} sizes='100vw' className='object-cover w-4 h-4' />
                                                 <span className={`border-b-2 ${pathname === '/cek-transaksi' ? ' border-orange-500' : 'border-transparent'}`}>Search</span>
                                             </span>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
                                 {
