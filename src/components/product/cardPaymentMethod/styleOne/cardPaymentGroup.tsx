@@ -62,7 +62,7 @@ const CardPaymentGroup: React.FC<CardGroupProps> = ({method, payments, handleIte
                                 onClick={() => handleItemClick(item.pivot.id_payment)}
                             >
                                 <Image src={item.merchant_logo} alt={item.merchant_name} width={100} height={50} className={`${(!valueProduct) && 'opacity-50'}`}/>
-                                <p className='py-2'>{formatRupiah((valuePrice * valueQuantity) + item.admin_fee)}</p>
+                                <p className='py-2'>{formatRupiah((valuePrice * valueQuantity) + parseFloat(item.admin_fee))}</p>
                                 <div className='border-t border-gray-400 pt-2'>
                                 <h1>{item.merchant_name}</h1>
                                 </div>
