@@ -39,12 +39,12 @@ const loadProduct = () => {
     }
     return (
         <>
-            <div className="grid gap-2 xl:gap-4 grid-cols-3 md:grid-cols-6 md:gap-2">
+            <div className="grid gap-2 xl:gap-4 grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 md:gap-3 lg:gap-2">
                 {
                     product === null && (
                         totalLoading.map((index) => {
                             return (
-                                <div key={index} className={`w-full xl:h-64 h-40 bg-gray-300 animate-pulse cursor-pointer group relative shadow-lg col-span-1 ${styles.polygon}`}/>
+                                <div key={index} className={`w-full xl:h-64 sm:h-56 md:h-64 h-40 bg-gray-300 animate-pulse cursor-pointer group relative shadow-lg col-span-1 ${styles.polygon}`}/>
                             );
                         })
                     )
