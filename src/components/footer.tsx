@@ -44,17 +44,17 @@ const Footer = ({ data, dataFooter }: Props) => {
                                     <span className="font-semibold">Peta Situs</span>
                                 </div>
                                 <div className="py-1">
-                                    <Link href="/">
+                                    <Link href="/" className="hover:text-orange-500">
                                         Home
                                     </Link>
                                 </div>
                                 <div className="py-1">
-                                    <Link href="/invoices">
+                                    <Link href="/invoices" className="hover:text-orange-500">
                                         Produk
                                     </Link>
                                 </div>
                                 <div className="py-1">
-                                    <a href="https://api.whatsapp.com/send/?phone=6281329701020&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://api.whatsapp.com/send/?phone=6281329701020&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"  className="hover:text-orange-500">
                                         Hubungi Kami
                                     </a>
                                 </div>
@@ -67,7 +67,7 @@ const Footer = ({ data, dataFooter }: Props) => {
                                     {
                                         dataFooter.dukungan.map((item, index) => {
                                             return (
-                                                <a target="_blank" className="py-1 flex items-center" href={item.value} key={index}>{item.nama}</a>
+                                                <a target="_blank" className="py-1 flex items-center hover:text-orange-500" href={item.value} key={index}>{item.nama}</a>
                                             )
                                         })
                                     } 
@@ -78,10 +78,14 @@ const Footer = ({ data, dataFooter }: Props) => {
                                     <span className="font-semibold">Legalitas</span>
                                 </div>
                                 <div className="py-1">
-                                    Kebijakan Privasi
+                                    <Link href="/privacy-policy" className="cursor-pointer hover:text-orange-500">
+                                        Kebijakan Privasi
+                                    </Link>
                                 </div>
                                 <div className="py-1">
-                                    Syarat dan Ketentuan
+                                    <Link href="/terms-and-condition" className="cursor-pointer hover:text-orange-500">
+                                        Syarat dan Ketentuan
+                                    </Link>
                                 </div>
                             </div>
                         </div>
