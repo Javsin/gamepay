@@ -172,10 +172,10 @@ const MobileNav = ({toggle} : {toggle: () => void}) => {
                     menuContainer // Render inside the portal container
                 )}
 
-            <Modal isOpen={isOpenModal} closeModal={toggleModal} title='' size='w-[35rem]' showClose={true} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-2xl pt-8 pb-6 px-6'>
+            <Modal isOpen={isOpenModal} closeModal={toggleModal} title='' size='w-[30rem]' showClose={true} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-2xl pt-3 pb-7 px-4'>
                 <>
-                    <div className='overflow-y-auto py-4 remove-scroll'>
-                        <div className='text-white my-2 w-full text-center'>
+                    <div className='overflow-y-auto py-2 remove-scroll'>
+                        <div className='text-white my-1 w-full text-center'>
                             <h1 className='text-center text-2xl'>
                                 Coming Soon!
                             </h1>

@@ -106,7 +106,7 @@ const navDesktop = ({toggle} : {toggle: () => void}) => {
                 </div>
             </div>
 
-            <Modal isOpen={isOpen} closeModal={toggleModal} title='' size='w-[35rem]' showClose={true} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-2xl pt-8 pb-6 px-6'>
+            <Modal isOpen={isOpen} closeModal={toggleModal} title='' size='w-[30rem]' showClose={true} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-2xl pt-4 pb-8 px-6'>
                 <>
                     <div className='overflow-y-auto py-4 remove-scroll'>
                         <div className='text-white my-2 w-full text-center'>
