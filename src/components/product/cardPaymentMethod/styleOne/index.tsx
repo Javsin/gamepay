@@ -11,7 +11,6 @@ interface CardPaymentMethodProps {
 }
 
 const CardPaymentMethod: React.FC<CardPaymentMethodProps> = ({paymentMethod}) => {
-    console.log(paymentMethod);
     const context = useAppContext();
     const valueProduct = context?.product;
     const setValuePayment = context?.setPayment ?? (() => {});
