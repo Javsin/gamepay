@@ -5,6 +5,7 @@ import IconPromo from "@/public/assets/icon_promo.png"
 import Image from "next/image";
 import Modal from '../../../../components/modal';
 import { useState } from "react";
+import PromotionCard from "@/components/product/promotionCard/styleOne";
 
 export default function Promo() {
     const context = useAppContext();
@@ -19,6 +20,42 @@ export default function Promo() {
     const toggleModal = () => {
         setIsOpenModal(!isOpenModal);
     }
+
+    const dataPromotions = [
+        {
+            "title": "Diskon sebesar Rp. 5.000",
+            "description": [
+                "Promo berlaku hingga 31/05/2024",
+                "Minimum pembelian Rp. 25.000",
+                "Batas penggunaan 1 kali untuk setiap akun.",
+                "Promo ini sudah mencapai limit penggunaan untuk hari ini"
+            ],
+            "promoCode": "MURAGAMES01",
+            "availability": false
+        },
+        {
+            "title": "Diskon 10% untuk semua produk",
+            "description": [
+                "Promo berlaku hingga 30/06/2024",
+                "Tanpa minimum pembelian",
+                "Batas penggunaan 2 kali untuk setiap akun.",
+                "Promo ini hanya berlaku untuk produk tertentu"
+            ],
+            "promoCode": "MURAGAMES02",
+            "availability": false
+        },
+        {
+            "title": "Diskon sebesar Rp. 10.000",
+            "description": [
+                "Promo berlaku hingga 31/05/2024",
+                "Minimum pembelian Rp. 25.000",
+                "Batas penggunaan 1 kali untuk setiap akun.",
+                "Promo ini sudah mencapai limit penggunaan untuk hari ini"
+            ],
+            "promoCode": "MURAGAMES03",
+            "availability": false
+        }
+    ];
 
     return (
         <>
@@ -49,55 +86,15 @@ export default function Promo() {
                     </div>
                 </div>
             </div>
-            <Modal isOpen={isOpenModal} closeModal={toggleModal} title='' size='w-[28rem]' showClose={true} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-2xl pt-3 px-4'>
+            <Modal isOpen={isOpenModal} closeModal={toggleModal} title='' size='w-[28rem]' showClose={true} background='bg-[#313E75] border-2 border-[#4E66D9] rounded-2xl pt-3 px-4 mt-3 md:mt-0'>
                 <>
                     <div className='overflow-y-auto py-1 remove-scroll'>
                         <h1 className='text-center text-xl mb-5 text-white font-semibold'>Promo yang tersedia</h1>
-                        <div className="w-full bg-[#556EB1] rounded-xl p-4 text-start opacity-50 mb-3 cursor-pointer">
-                            <p className="text-sm text-white">Diskon sebesar Rp. 5.000</p>
-                            <ul className="list-disc pt-3 pb-4 pl-5 text-white text-xs">
-                                <li>Promo berlaku hingga 31/05/2024</li>
-                                <li>Minimum pembelian Rp. 25.000</li>
-                                <li>Batas penggunaan 1 kali untuk setiap akun.</li>
-                                <li>Promo ini sudah mencapai limit penggunaan untuk hari ini</li>
-                            </ul>
-                            <div className="flex flex-col md:flex-row items-start justify-between">
-                                <p className="text-sm text-white">Kode Promo: MURAGAMES01</p>
-                                <div className="py-1 px-3 bg-red-600 rounded-md mt-2 md:mt-0">
-                                    <p className="text-xs font-normal text-white">Tidak Tersedia</p>
-                                </div>
-                            </div>
-                        </div> 
-                        <div className="w-full bg-[#556EB1] rounded-xl p-4 text-start opacity-50 mb-3 cursor-pointer">
-                            <p className="text-sm text-white">Diskon sebesar Rp. 5.000</p>
-                            <ul className="list-disc pt-3 pb-4 pl-5 text-white text-xs">
-                                <li>Promo berlaku hingga 31/05/2024</li>
-                                <li>Minimum pembelian Rp. 25.000</li>
-                                <li>Batas penggunaan 1 kali untuk setiap akun.</li>
-                                <li>Promo ini sudah mencapai limit penggunaan untuk hari ini</li>
-                            </ul>
-                            <div className="flex flex-col md:flex-row items-start justify-between">
-                                <p className="text-sm text-white">Kode Promo: MURAGAMES01</p>
-                                <div className="py-1 px-3 bg-red-600 rounded-md mt-2 md:mt-0">
-                                    <p className="text-xs font-normal text-white">Tidak Tersedia</p>
-                                </div>
-                            </div>
-                        </div> 
-                        <div className="w-full bg-[#556EB1] rounded-xl p-4 text-start opacity-50 mb-3 cursor-pointer">
-                            <p className="text-sm text-white">Diskon sebesar Rp. 5.000</p>
-                            <ul className="list-disc pt-3 pb-4 pl-5 text-white text-xs">
-                                <li>Promo berlaku hingga 31/05/2024</li>
-                                <li>Minimum pembelian Rp. 25.000</li>
-                                <li>Batas penggunaan 1 kali untuk setiap akun.</li>
-                                <li>Promo ini sudah mencapai limit penggunaan untuk hari ini</li>
-                            </ul>
-                            <div className="flex flex-col md:flex-row items-start justify-between">
-                                <p className="text-sm text-white">Kode Promo: MURAGAMES01</p>
-                                <div className="py-1 px-3 bg-red-600 rounded-md mt-2 md:mt-0">
-                                    <p className="text-xs font-normal text-white">Tidak Tersedia</p>
-                                </div>
-                            </div>
-                        </div> 
+                        {
+                            dataPromotions.map((promotion, index) => (
+                                <PromotionCard key={index} promotion={promotion} setIsOpenModal={setIsOpenModal} />
+                            ))
+                        }
                     </div>
                 </>
             </Modal>
