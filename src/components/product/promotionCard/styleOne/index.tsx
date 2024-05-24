@@ -2,7 +2,7 @@
 
 import { useAppContext } from "@/context/setOrder";
 
-const promotionCard = ({promotion, setIsOpenModal} : any) => {
+const PromotionCard = ({promotion, setIsOpenModal} : any) => {
     const context = useAppContext();
     const setValuePromo = context?.setPromo ?? (() => {});
     const { title, description, promoCode, availability } = promotion;
@@ -31,4 +31,4 @@ const promotionCard = ({promotion, setIsOpenModal} : any) => {
     )
 }
 
-export default promotionCard;
+export default PromotionCard;
