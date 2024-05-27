@@ -36,8 +36,9 @@ const CardPaymentSingle: React.FC<CardSingleProps> = ({method, payments, handleI
                             <div>
                                 <p>
                                     {
-                                        valuePrice > 0 ? `${formatRupiah((valuePrice * valueQuantity) + (item.is_prosentase ? 
-                                            (valuePrice * valueQuantity * parseFloat(item.admin_fee) / 100) : 
+                                        valuePrice > 0 ? `${formatRupiah((valuePrice * valueQuantity) + 
+                                        (item.is_prosentase ? 
+                                            Math.ceil(valuePrice * valueQuantity * parseFloat(item.admin_fee.replace('%', '')) / 100) : 
                                             parseFloat(item.admin_fee) 
                                         ))}` : 'Min. Rp 100'
                                     }
