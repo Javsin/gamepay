@@ -31,7 +31,7 @@ const Footer = ({ data, dataFooter }: Props) => {
                                     {
                                         dataFooter.sosmed.map((item, index) => {
                                             return (
-                                                <a target="_blank" className="py-1 flex items-center" href={item.url_sosmed} key={index}><span className="me-1">
+                                                <a target="_blank" className="py-1 flex items-center hover:text-orange-500" href={item.url_sosmed} key={index}><span className="me-1">
                                                     <Image src={item.logo} alt={item.nama_akun} width={0} height={0} sizes="100vw" className="object-cover w-4 h-4" />
                                                 </span>{item.nama_akun}</a>
                                             )

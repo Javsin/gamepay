@@ -2,7 +2,7 @@
 export default async function getCategoryProduct() {
     const res = await fetch(`${process.env.HOST_API}/api/categories`, { 
         next: { 
-            revalidate: 3600,
+            revalidate: 0,
         },
         headers: {
             'Content-Type': 'application/json',
