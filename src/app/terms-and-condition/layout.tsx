@@ -15,7 +15,7 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: "Invoices / Muragames - Top Up Game Murah dan Cepat",
+  title: "Terms and Condition / Muragames - Top Up Game Murah dan Cepat",
   description: "Dapatkan top up game murah dan cepat untuk berbagai game populer. Nikmati penawaran spesial di Muragames.",
   keywords : "top up game, top up game murah, voucher game, top up online",
   icons: {
