@@ -136,9 +136,9 @@ const transactionLayout = ({description,testimoni,form,product,quantity,paymentM
                             <div className="my-7">
                                 {product}
                             </div>
-                            <div>
+                            {/* <div>
                                 {quantity}
-                            </div>
+                            </div> */}
                             <div className="my-7">
                                 {paymentMethod}
                             </div>

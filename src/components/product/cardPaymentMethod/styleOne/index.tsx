@@ -37,7 +37,7 @@ const CardPaymentMethod: React.FC<CardPaymentMethodProps> = ({paymentMethod}) =>
             <div className="bg bg-dark-blue-2 rounded-xl scrollInToPayemnt" ref={elementPaymentRef}>
                 <div className="flex gap-2 text-white items-center border-b border-[#374585]">
                     <div className="bg-orange bg-orange-500 rounded-tl-xl py-2 px-4">
-                        4
+                        3
                     </div>
                     <div>
                         Metode Pembayaran
